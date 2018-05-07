@@ -1,0 +1,52 @@
+<div class="container">
+  <h1> Add Vendor </h1>
+  <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
+    <table>
+      <tr>
+        <td>
+            <label for="name">Name</label>
+        </td>
+        <td>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="name" #NameRef="ngModel">
+        </td>
+      </tr>
+      <tr>
+        <td>
+            <label for="type">type</label>
+        </td>
+        <td>
+            <input type="text" class="form-control" id="type" name="type" [(ngModel)]="type" #typeRef="ngModel">
+        </td>
+      </tr>
+      <tr>
+        <td>
+            <label for="value">value</label>
+        </td>
+        <td>
+            <input type="text" class="form-control" id="value" name="value" [(ngModel)]="value" #valueRef="ngModel">
+        </td>
+      </tr>
+      <tr>
+        <td>
+            <label for="order">order</label>
+        </td>
+        <td>
+            <input type="text" class="form-control" id="order" name="order" [(ngModel)]="order" #orderRef="ngModel">
+        </td>
+      </tr>
+      <tr>
+        <td>
+            <label for="applicable">applicable</label>
+        </td>
+        <td>
+            <input type="text" class="form-control" id="applicable" name="applicable" [(ngModel)]="applicable" #applicableRef="ngModel">
+        </td>
+      </tr>
+      <tr>                            
+        <td>
+            <button type="submit" class="button">Submit</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>

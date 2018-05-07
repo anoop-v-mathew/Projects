@@ -1,0 +1,87 @@
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+<div class="container">
+  <div class="row">
+    <h1 class="title">
+      {{Vendor.VendorName}}
+      <br>
+      <small></small>      
+    </h1>
+    <div class="col-sm-10 col-sm-offset-1" *ngFor='let menu of Menus'>
+      <h2 class="section-heading h2 pt-4">{{menu.name}}</h2>
+      <div class="col-md-4 col-sm-6">
+        <div class="card-container" *ngFor='let items of menu.items'>
+          <div class="card">
+            <div class="front">
+              <div class="cover">
+                <img src="http://www.rwnewyork.com/images/2017/05/11/resorts-world-food-court.jpg" />
+              </div>
+              <div class="user">
+                <img class="img-circle" src="https://scm-assets.constant.co/swm/9a888e72fca371869e751ab34491d024/35b8f5e5-f755-40a4-a90b-722d9a9ccfbb.jpg" />
+              </div>
+              <div class="content">
+                <div class="main">
+                  <h3 class="name">{{items.name}}</h3>
+                </div>
+                <div class="footer">
+                  <i class="fa fa-mail-forward"></i>
+                </div>
+              </div>
+            </div>
+            <!--end of front panel-->
+            <div class="back">
+              <div class="header">
+                <h5 class="name">{{items.name}}</h5>
+              </div>
+              <div class="content">
+                <div class="main">
+
+
+                  <label class="text-center">Price:</label>
+                  <label class="text-center">{{items.price}}</label>
+                  <br>
+                  <label class="text-center">Currency type: </label>
+                  <label class="text-center">{{items.currency}}</label>
+                  <br>
+                  <label class="text-center">Prepration Time: </label>
+                  <label class="text-center">{{items.preparation_time}} min</label>
+                </div>
+              </div>
+              <div class="footer">
+                <!-- <div class="social-links text-center">
+                  <a href="http://creative-tim.com" class="facebook">
+                    <i class="fa fa-facebook fa-fw"></i>
+                  </a>
+                  <a href="http://creative-tim.com" class="google">
+                    <i class="fa fa-google-plus fa-fw"></i>
+                  </a>
+                  <a href="http://creative-tim.com" class="twitter">
+                    <i class="fa fa-twitter fa-fw"></i>
+                  </a>
+                </div> -->
+                <span class="left">
+                    <a [routerLink]="['/UpdateItem',menu.ID,items.ID]">
+                      <button type="button" class="btn btn-warning waves-light" mdbRippleRadius>Edit</button>
+                    </a>
+                  </span>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- add new item -->
+
+      <a [routerLink]="['/AddItem',menu.ID]">
+        <button type="button" class="btn btn-warning waves-light" mdbRippleRadius>Add {{menu.name}}</button>
+      </a>
+    </div>
+    <a [routerLink]="['/AddCatog']">
+      <button type="button" class="btn btn-warning waves-light" mdbRippleRadius>Add new Catogory</button>
+    </a>
+  </div>
+</div>
