@@ -33,9 +33,4 @@ router.get('/profile', (req, res, next) => {
   res.send('PROFILE');
 });
 
-// validate user? (/users/validate)
-router.get('/validate', (req, res, next) => {
-  res.send('VALIDATE');
-});
-
 module.exports = router;

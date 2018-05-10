@@ -14,12 +14,12 @@ mongoose.connection.on('connected', () => {
   console.log('Connected to database: ' + config.database);
 });
 
-// on connection
+// on error
 mongoose.connection.on('error', (err) => {
   console.log('Database error: ' + err);
 });
 
-// web equest handler
+// web request handler
 const app = express();
 
 const users = require('./routes/users');
