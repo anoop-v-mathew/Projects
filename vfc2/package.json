@@ -1,0 +1,21 @@
+{
+  "name": "vfc2",
+  "version": "1.0.0",
+  "description": "Virtual Food Court",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "*",
+    "mongoose": "*",
+    "bcryptjs": "*",
+    "cors": "*",
+    "jsonwebtoken": "*",
+    "body-parser": "*",
+    "passport": "*",
+    "passport-jwt": "*"
+  },
+  "author": "Anoop & Bhargavi",
+  "license": "ISC"
+}
