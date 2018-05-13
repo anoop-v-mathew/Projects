@@ -19,7 +19,7 @@ mongoose.connection.on('error', (err) => {
 const app = express();
 
 const users = require('./routes/users');
-const vendors = require('./routes/vendors');
+const admin = require('./routes/admin');
 
 const port = 3000;
 
@@ -41,7 +41,7 @@ require('./config/passport')(passport);
 app.use('/users', users);
 
 // Vendor routes
-app.use('/vendors', vendors);
+app.use('/admin', admin);
 
 // Index Route
 app.get('/', (req, res) => {

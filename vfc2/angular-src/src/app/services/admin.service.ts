@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 // import { Init } from './initial-vendors';
-// import { HttpClient, HttpHeaders } from '@angular/common/http';
 //import {CookieService} from 'ngx-cookie-service';
 
 
@@ -10,8 +10,10 @@ import { Injectable } from '@angular/core';
 })
 export class AdminService {
 
+  private _adminAPI = 'http://localhost:3000/admin';
   private isUserLoggedIn;
-  constructor() {
+  
+  constructor(private _http: HttpClient) {
     console.log('Initializing Vendors service ...');
     this.isUserLoggedIn = false;
   }
@@ -22,9 +24,8 @@ export class AdminService {
     return n;
   }
  
-  getVendors(): any[] {
-    const vendors = JSON.parse(localStorage.getItem('FoodCourt.vendors'));
-    return vendors;
+  getVendors(): any {
+    return this._http.get(this._adminAPI + '/getVendors');
   }
 
   getVendor(id: any): any[] {

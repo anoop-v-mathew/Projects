@@ -3,11 +3,18 @@ const router = express.Router();
 // const passpeort = require('passport');
 // const jwt = require('jsonwebtoken');
 
-// const Vendor = require('../models/vendor');
+const Vendor = require('../models/vendor');
 
 // Get Vendors
 router.get('/getVendors', (req, res, next) => {
-    res.send('getVendors API Endpoint');
+    Vendor.getVendorsForAdmin((err, vendors) => {
+        if (err) throw err;
+        if (!vendors) {
+            return res.json({success: false, msg: 'Vendors not found'});
+        }
+        console.log(vendors.toString());
+        return res.json(vendors);
+    });
 });
 
 // Delete Vendor
