@@ -8,7 +8,7 @@ const config = require('../config/database');
 
 // self-register for customers
 router.post('/registerCustomer', (req, res, next) => {
-  console.log("In /registerCustomer");
+  console.log("In /users/registerCustomer");
   let newUser = new User;
   newUser.userDisplayName = req.body.userDisplayName;
   newUser.email = req.body.email;
@@ -26,7 +26,7 @@ router.post('/registerCustomer', (req, res, next) => {
 
 // add vendor user (to be used by admin only)
 router.post('/addVendorUser', (req, res, next) => {
-  console.log("In /addVendorUser");
+  console.log("In /users/addVendorUser");
   let newUser = new User;
   newUser.userDisplayName = req.body.userDisplayName;
   newUser.email = req.body.email;
@@ -46,7 +46,7 @@ router.post('/addVendorUser', (req, res, next) => {
 
 // add vendor user (to be used by admin only)
 router.post('/addAdminUser', (req, res, next) => {
-  console.log("In /addAdminUser");
+  console.log("In /users/addAdminUser");
   let newUser = new User;
   newUser.userDisplayName = req.body.userDisplayName;
   newUser.email = req.body.email;
@@ -66,6 +66,7 @@ router.post('/addAdminUser', (req, res, next) => {
 
 // authenticate user login (/users/authenticate)
 router.post('/authenticateUser', (req, res, next) => {
+  console.log("In /users/authenticateUser");
   const username = req.body.username;
   const password = req.body.password;
   
