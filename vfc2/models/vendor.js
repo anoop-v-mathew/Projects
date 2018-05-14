@@ -37,16 +37,16 @@ const VendorSchema = mongoose.Schema({
     required: true
   },
   VendorLocation: LocationSchema,
-/*  charges: {
+  charges: {
     type: mongoose.Schema.Types.Mixed
   },
   categories: {
     type: mongoose.Schema.Types.Mixed
-  }*/
+  }
 });
 
 const Vendor = module.exports = mongoose.model('Vendor', VendorSchema);
 
-module.exports.getVendorsForAdmin = function(callback) {
+module.exports.getVendors = function(callback) {
   Vendor.find({}, callback);
 }

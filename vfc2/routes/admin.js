@@ -7,11 +7,15 @@ const Vendor = require('../models/vendor');
 
 // Get Vendors
 router.get('/getVendors', (req, res, next) => {
-    Vendor.getVendorsForAdmin((err, vendors) => {
+    Vendor.getVendors((err, vendors) => {
         if (err) throw err;
         if (!vendors) {
             return res.json({success: false, msg: 'Vendors not found'});
         }
+        for (let x=0; x < vendors.length; x++) {
+            vendors[x].charges = undefined;
+            vendors[x].categories = undefined;
+        }    
         console.log(vendors.toString());
         return res.json(vendors);
     });
