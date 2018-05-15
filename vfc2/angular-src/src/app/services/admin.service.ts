@@ -69,44 +69,12 @@ export class AdminService {
       }
     }
     localStorage.setItem('FoodCourt.vendors', JSON.stringify(vendors));
-  }
-
-  deleteVendor(id: any) {
-
-    const vendors = JSON.parse(localStorage.getItem('FoodCourt.vendors'));
-
-    for (let i = 0; i < vendors.length; i++) {
-      if (vendors[i].ID == id) {
-        vendors.splice(i, 1);
-      }
-    }
-    localStorage.setItem('FoodCourt.vendors', JSON.stringify(vendors));
-  }
-
-  CheckVendor(UserName: string, password: string): boolean{
-
-    const vendors = JSON.parse(localStorage.getItem('FoodCourt.vendors'));
-    let Menu: any = null;
-    for(let i = 0; i< vendors.length; i++){
-      
-      //console.log('vendors : ' + JSON.stringify(vendors));
-      if((vendors[i].VendorEmail === UserName) && (vendors[i].VendorPassword  === password)){
-        
-        console.log('UserName:'+ vendors[i].VendorEmail);
-
-        this.isUserLoggedIn = true;
-        console.log('Login' + this.isUserLoggedIn);
-      }
-    }
-    return this.isUserLoggedIn;
-  }
-
-  setLogin(){
-    this.isUserLoggedIn = true;
-  }
-  getLogin(){
-    // let login: any = this.isUserLoggedIn;
-    // this._CookieServie.set('login', login );
+  // registerUser(user){
+  //   let headers = new Headers();
+  //   headers.append('Content-Type', 'application/json');
+  //   return this._http.post('http://localhost:3000/users/RegisterCustomer', user,{headers: headers})
+  //   .map(res => res.json());
+  // }
     return this.isUserLoggedIn;
   }
 
