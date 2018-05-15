@@ -18,7 +18,7 @@ export class EditVendorComponent implements OnInit {
         this.ID = +params['id'];
     });
     console.log(this.ID);
-    this.Vendor = this._AdminService.getVendor(this.ID);
+    //this.Vendor = this._AdminService.getVendor(this.ID);
   }
 
   onSubmit(formValue: any) {
@@ -37,7 +37,7 @@ export class EditVendorComponent implements OnInit {
     this.Vendor.VendorOwner = formValue.VendorOwner;
     this.Vendor.VendorPassword = formValue.VendorPassword;
 
-    this._AdminService.updateVendor(this.Vendor);
+    //this._AdminService.updateVendor(this.Vendor);
     this.router.navigate(['admin']);
   }
 

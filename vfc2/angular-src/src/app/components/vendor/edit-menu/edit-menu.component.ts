@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import{VendorService} from '../../../services/vendor.service';
-import {CookieService} from 'ngx-cookie-service';
+//import {CookieService} from 'ngx-cookie-service';
 import { forEach } from '@angular/router/src/utils/collection';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class EditMenuComponent implements OnInit {
 
-  constructor(private _VendorSerice: VendorService, private _CookieServie: CookieService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private _VendorSerice: VendorService, private route: ActivatedRoute, private router: Router) { }
   Vendor: any;
   MenuID: any;
   ItemID: any;
@@ -26,9 +26,9 @@ export class EditMenuComponent implements OnInit {
       this.ItemID = +params['id2'];
       console.log('Sparam:' + this.ItemID)
   });
-  this.email = this._CookieServie.get('username');
-  this.Vendor = this._VendorSerice.getVendorbyEmail(this.email);
-  this.Menus = this._VendorSerice.getMenubyEmail(this.email);
+  //this.email = this._CookieServie.get('username');
+  //this.Vendor = this._VendorSerice.getVendorbyEmail(this.email);
+  //this.Menus = this._VendorSerice.getMenubyEmail(this.email);
 
   for(let i = 0; i < this.Menus.length; i ++){
     if(this.Menus[i].ID == this.MenuID){
@@ -53,7 +53,7 @@ export class EditMenuComponent implements OnInit {
             this.Vendor.categories[i].items[j].preparation_time = formValue.preparation_time;
 
 
-            this._VendorSerice.updateChange(this.Vendor);
+            //this._VendorSerice.updateChange(this.Vendor);
             this.router.navigate(['Menu']);
           }
         }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import{CustomerService} from '../../../services/customer.service';
-import {CookieService} from 'ngx-cookie-service';
+//import {CookieService} from 'ngx-cookie-service';
 import { forEach } from '@angular/router/src/utils/collection';
 import { ActivatedRoute, Params } from "@angular/router";
 import { Location } from "@angular/common";
@@ -24,10 +24,10 @@ export class CustomerMenuComponent implements OnInit {
 
     });
     //console.log('ServiceMenu:' +this._AdminService.getMenu(this.id))
-    this.Vendor = this._customer.getVendor(this.id);
+   // this.Vendor = this._customer.getVendor(this.id);
     //this.VendorName = this.Vendors[0].VendorName;
     //console.log('vendorName' + this.VendorName);
-    this.Menus = this._customer.getMenu(this.id);
+    //this.Menus = this._customer.getMenu(this.id);
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import{VendorService} from '../../../services/vendor.service';
-import {CookieService} from 'ngx-cookie-service';
+//import {CookieService} from 'ngx-cookie-service';
 import { forEach } from '@angular/router/src/utils/collection';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
@@ -12,7 +12,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class AddMenuComponent implements OnInit {
 
-  constructor(private _VendorSerice: VendorService, private _CookieServie: CookieService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private _VendorSerice: VendorService,  private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     
@@ -24,7 +24,7 @@ export class AddMenuComponent implements OnInit {
     name: formValue.name
     };
      //this._AdminService.Additem(newItem, this.Email);
-     this._VendorSerice.AddICatg(newItem);
+     //this._VendorSerice.AddICatg(newItem);
      this.router.navigate(['Menu'])
   }
   

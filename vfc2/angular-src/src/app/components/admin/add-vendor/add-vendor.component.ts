@@ -28,7 +28,7 @@ export class AddVendorComponent {
         VendorOwner: formValue.VendorOwner,
         VendorPassword: formValue.VendorPassword
     };
-    this._AdminService.addVendor(newVendor);
+    //this._AdminService.addVendor(newVendor);
     this.router.navigate(['admin']);
   }
 }

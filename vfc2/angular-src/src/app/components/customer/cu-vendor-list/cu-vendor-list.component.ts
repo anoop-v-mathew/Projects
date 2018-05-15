@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import{CustomerService} from '../../../services/customer.service';
-import {CookieService} from 'ngx-cookie-service';
+//import {CookieService} from 'ngx-cookie-service';
 import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
@@ -13,7 +13,7 @@ export class CuVendorListComponent implements OnInit {
   constructor(private _customer: CustomerService) { }
   Vendors: any[] = [];
   ngOnInit() {
-    this.Vendors = this._customer.getVendors();
+    //this.Vendors = this._customer.getVendors();
     
   }
 

@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 
 // Third-party Module Imports
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { FlashMessagesModule } from 'angular2-flash-messages';
+
 
 // Application Component Imports
 import { AppComponent } from './app.component';
@@ -36,13 +38,15 @@ import { CuVendorListComponent } from './components/customer/cu-vendor-list/cu-v
 import { AdminService } from './services/admin.service';
 import { VendorService } from './services/vendor.service';
 import { CustomerService } from './services/customer.service';
+import {AuthService} from './services/auth.service';
 
-// Routing
+//Routing
 const appRoutes: Routes = [
-  { path:' Login', component: LoginComponent },
-  { path:' admin', component:ViewVendorsComponent },
-  { path:' vendor/:id', component:ViewVendorComponent },
-  { path:' vendor', component:VeiwMenuComponent },
+  { path:'Login', component: LoginComponent },
+  { path:'Register', component: RegisterComponent },
+  { path:'admin', component:ViewVendorsComponent },
+  { path:'vendor/:id', component:ViewVendorComponent },
+  { path:'vendor', component:VeiwMenuComponent },
   { path: 'UpdateVendor/:id', component:EditVendorComponent },
   { path: 'AddVendor', component:AddVendorComponent },
   { path: 'Menu', component: VeiwMenuComponent },
@@ -83,16 +87,18 @@ export const routing = RouterModule.forRoot(appRoutes);
     AddItemComponent,
     CustomerMenuComponent,
     CuVendorListComponent
+    
   ],
   imports: [
     BrowserModule,
     routing,
     HttpModule,
     FormsModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    FlashMessagesModule.forRoot()
   ],
   providers: [
-
+    AdminService, VendorService, AuthService
   ],
   bootstrap: [ AppComponent ],
   schemas: [ NO_ERRORS_SCHEMA ]

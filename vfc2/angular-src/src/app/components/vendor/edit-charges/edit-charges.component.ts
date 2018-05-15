@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import{VendorService} from '../../../services/vendor.service';
-import {CookieService} from 'ngx-cookie-service';
+//import {CookieService} from 'ngx-cookie-service';
 import { forEach } from '@angular/router/src/utils/collection';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
@@ -12,7 +12,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class EditChargesComponent implements OnInit {
 
-  constructor(private _VendorSerice: VendorService, private _CookieServie: CookieService, private route: ActivatedRoute, private router: Router) {
+  constructor(private _VendorSerice: VendorService, private route: ActivatedRoute, private router: Router) {
 
    }
 
@@ -26,10 +26,10 @@ export class EditChargesComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
         this.ID = +params['id'];
     });
-    this.email = this._CookieServie.get('username')
+    //this.email = this._CookieServie.get('username')
     console.log(this.ID);
-    this.Vendor = this._VendorSerice.getVendorbyEmail(this.email);
-    this.Charges = this._VendorSerice.getChargebyEmail(this.email);
+    //this.Vendor = this._VendorSerice.getVendorbyEmail(this.email);
+    //this.Charges = this._VendorSerice.getChargebyEmail(this.email);
     console.log('test:' + this.Charges.length);
 
     for(let i = 0 ; i < this.Charges.length; i ++){
@@ -52,7 +52,7 @@ export class EditChargesComponent implements OnInit {
         this.Vendor.charges[i].order = formValue.order;
         this.Vendor.charges[i].applicable = formValue.applicable;
 
-        this._VendorSerice.updateChange(this.Vendor);
+        //this._VendorSerice.updateChange(this.Vendor);
         this.router.navigate(['charge']);
       }
     }

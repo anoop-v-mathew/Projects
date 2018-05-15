@@ -23,7 +23,7 @@ export class ViewVendorComponent implements OnInit {
 
     });
     //console.log('ServiceMenu:' +this._AdminService.getMenu(this.id))
-    this.Vendor = this._AdminService.getVendor(this.id);
+    //this.Vendor = this._AdminService.getVendor(this.id);
     console.log('Catolog:' +JSON.stringify(this.Vendor) );
   }
 

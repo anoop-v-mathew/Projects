@@ -16,13 +16,16 @@ export class ViewVendorsComponent implements OnInit {
     constructor(private _AdminService: AdminService) { }
 
     ngOnInit() {
-      this._AdminService.getVendors().subscribe(
-        (resultVendors: any) => this.vendors = resultVendors,
-        err => console.log(err)
+      this._AdminService.getVendors()
+      .subscribe(vendors => {
+          this.vendors = vendors
+        
+        }
       );
+      
         this.vendors = this._AdminService.getVendors();
-        console.log(this.vendors);
-        console.log(this._AdminService.getLogin());
+        console.log('VendorList:' + JSON.stringify(this.vendors));
+        //console.log(this._AdminService.getLogin());
     }
 /*
     deleteVendor(vendorID: any) {
