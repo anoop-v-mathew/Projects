@@ -64,7 +64,7 @@ router.post('/addAdminUser', (req, res, next) => {
   });
 });
 
-// authenticate user login (/users/authenticate)
+//authenticate user login (/users/authenticate)
 router.post('/authenticateUser', (req, res, next) => {
   console.log("In /users/authenticateUser");
   const username = req.body.username;
@@ -80,16 +80,22 @@ router.post('/authenticateUser', (req, res, next) => {
       if (err) throw err;
       if (isMatch) {
         const token = jwt.sign(user.toJSON(), config.secret, {expiresIn: 1800}); // expiration in 1800 seconds (30 min)
-        user.password = undefined; // blank out the password       
-        res.json({
+        user.password = undefined; // blank out the password   
+        
+        
+        return res.json({
           success: true, 
           token: 'JWT ' + token, 
-          user: user
+          user: user,
+          usertype: user.userType,
+          msg:'Logged in: ' + username
         });
+
       } else {
         return res.json({success: false, msg: 'Credentials incorrect for ' + username});
       }
     });
+    
   });
 });
 
@@ -97,5 +103,6 @@ router.post('/authenticateUser', (req, res, next) => {
 router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
   res.json({user: req.user});
 });
+
 
 module.exports = router;

@@ -50,9 +50,10 @@ export class RegisterComponent implements OnInit {
     this._AuthService.registerUser(user).subscribe(data => {
       if(data.success){
         console.log('your registred');
+        console.log(data.msg);
       }
       else{
-        console.log('Failed to Reg')
+        console.log(data.msg)
       }
     });
   }

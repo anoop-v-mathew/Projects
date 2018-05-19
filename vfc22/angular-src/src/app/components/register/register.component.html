@@ -1,0 +1,36 @@
+<div class="container">
+  <h1>Register</h1>
+  <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
+    <table>
+      <tr>
+        <td>
+            <label for="name">Name</label>
+        </td>
+        <td>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="name" #nameRef="ngModel">
+        </td>
+      </tr>
+      <tr>
+        <td>
+            <label for="email">Email</label>
+        </td>
+        <td>
+            <input type="text" class="form-control" id="email" name="email" [(ngModel)]="email" #emailRef="ngModel">
+        </td>
+      </tr>
+      <tr>
+        <td>
+            <label for="password">Password</label>
+        </td>
+        <td>
+            <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password" #passwordRef="ngModel">
+        </td>
+      </tr>
+      <tr>                            
+        <td>
+            <button type="submit" class="button">Submit</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
