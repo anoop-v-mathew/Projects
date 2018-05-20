@@ -48,5 +48,6 @@ module.exports.getVendors = function(callback) {
 }
 
 module.exports.addVendor = function(newVendor, callback) {
+  //console.log('Vendor' +JSON.stringify( newVendor));
   newVendor.save(callback);
 }

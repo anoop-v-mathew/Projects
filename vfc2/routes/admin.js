@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-// const passpeort = require('passport');
+// const passport = require('passport');
 // const jwt = require('jsonwebtoken');
 
 const Vendor = require('../models/vendor');
@@ -19,6 +19,7 @@ router.get('/getVendors', (req, res, next) => {
             vendors[x].categories = undefined;
         }    
         return res.json(vendors);
+        
     });
 });
 
@@ -35,10 +36,11 @@ router.post('/addVendor', (req, res, next) => {
     newVendor.VendorPhone = req.body.VendorPhone;
     newVendor.VendorEmail = req.body.VendorEmail;
     newVendor.VendorOwner = req.body.VendorOwner;
-    newVendor.VendorLocation.floor = req.body.VendorLocation.floor;
-    newVendor.VendorLocation.tower = req.body.VendorLocation.tower;
-    newVendor.VendorLocation.campus = req.body.VendorLocation.campus;
+    newVendor.VendorLocation.floor = req.body.floor;
+    newVendor.VendorLocation.tower = req.body.tower;
+    newVendor.VendorLocation.campus = req.body.campus;
     Vendor.addVendor(newVendor, (err, vendor) => {
+        console.log('new' + newVendor.VendorName);
         if (err) {
             res.json({success: false, msg: 'Failed to add Vendor. Error: ' + err});
         } else {

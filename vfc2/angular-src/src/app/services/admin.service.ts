@@ -20,8 +20,23 @@ export class AdminService {
   }
   
   getVendors(): any {
+    let headers = new Headers();
+    //headers.append('Content-Type', 'application/json');
     return this._http.get(this._adminAPI + '/getVendors')
     .map(res => res.json());
   }
- 
+
+  AddVendor(user){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this._http.post('http://localhost:3000/admin/addVendor', user,{headers: headers})
+    .map(res => res.json());
+  }
+
+  // AddUserVendor(user){
+  //   let headers = new Headers();
+  //   headers.append('Content-Type', 'application/json');
+  //   return this._http.post(this._adminAPI + '/addVendorUser', user, {headers: headers})
+  //   .map(res=> res.json() );
+  // }
 }

@@ -16,19 +16,30 @@ export class AddVendorComponent {
   onSubmit(formValue: any) {
     console.log('Form Value = ' + JSON.stringify(formValue, null, 4));
     const newLocation = {
-      campus: formValue.campus,
-      tower: formValue.tower,
       floor: formValue.floor,
+      tower: formValue.tower,
+      campus: formValue.campus,
     };
     const newVendor = {
-        VendorName: formValue.VendorName,
-        VendorPhone: formValue.VendorPhone,
-        VendorEmail: formValue.VendorEmail,
-        VendorLocation: newLocation,
-        VendorOwner: formValue.VendorOwner,
-        VendorPassword: formValue.VendorPassword
+      VendorName: formValue.VendorName,
+      VendorPhone: formValue.VendorPhone,
+      VendorEmail: formValue.VendorEmail,
+      //VendorLocation: newLocation,
+      floor: formValue.floor,
+      tower: formValue.tower,
+      campus: formValue.campus,
+      VendorOwner: formValue.VendorOwner,
+      VendorPassword: formValue.VendorPassword
     };
-    //this._AdminService.addVendor(newVendor);
+    
+    this._AdminService.AddVendor(newVendor).subscribe(data => {
+      if (data.success) {
+        console.log(data.msg);
+      }
+      else {
+        console.log(data.msg);
+      }
+    });
     this.router.navigate(['admin']);
   }
 }
