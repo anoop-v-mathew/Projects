@@ -12,9 +12,14 @@ export class CuVendorListComponent implements OnInit {
 
   constructor(private _customer: CustomerService) { }
   Vendors: any[] = [];
-  ngOnInit() {
-    //this.Vendors = this._customer.getVendors();
-    
-  }
 
+  ngOnInit() {
+    this._customer.getVendors()
+    .subscribe(vendors => {
+        this.Vendors = vendors;
+        //console.log('Vendors:' +JSON.stringify(this.vendors));
+      
+      }
+    );
+  }
 }
