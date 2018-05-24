@@ -16,7 +16,7 @@
             </div>
   
             <div class="card-body text-center">
-              <h4 class="card-title" [routerLink]="['/Vendor',vendor.ID]">
+              <h4 class="card-title" [routerLink]="['/vendor',vendor.VendorEmail]">
                 <strong>
                   {{ vendor.VendorName }}
                 </strong>
@@ -32,12 +32,17 @@
               </p>
   
               <div class="card-footer">
-                <span class="left">
-                  <a [routerLink]="['/UpdateVendor',vendor.ID]">
+                <!-- <span class="left">
+                  <a [routerLink]="['/UpdateVendor'+ vendor.VendorEmail]">
                     <button type="button" class="btn btn-warning waves-light" mdbRippleRadius>Edit</button>
                   </a>
+                </span> -->
+
+                <span class="="left>
+                  <button type="button" class="btn btn-warning waves-light" (click)="onUpdate(vendor.VendorEmail)">Update</button>
                 </span>
-  
+              
+
                 <span class="right">
                   <a href="/admin" placement="top">
                     <button type="button" onclick="deletebook(vendor.ID)" class="btn btn-danger waves-light" mdbRippleRadius>Delete</button>

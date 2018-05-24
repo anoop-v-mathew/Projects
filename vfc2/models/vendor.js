@@ -51,3 +51,16 @@ module.exports.addVendor = function(newVendor, callback) {
   //console.log('Vendor' +JSON.stringify( newVendor));
   newVendor.save(callback);
 }
+
+module.exports.UpdateVendor = function(VendorUpdate, callback){
+  const query = {"email": VendorUpdate.email};
+  Vendor.updateOne(query, UpdatedVendor, callback)
+}
+
+module.exports.getVendorByEmail = function(email, callback) {
+  //console.log('email_models:' + email)
+  const query = {"VendorEmail": email};
+  //console.log('query:' +JSON.stringify( query));
+  Vendor.findOne(query, callback);
+  //console.log('Vendor' +JSON.stringify( Vendor));
+}

@@ -37,6 +37,8 @@ export class LoginComponent implements OnInit {
         // console.log(JSON.stringify(user));
         // console.log('your registred');
         // console.log(data);
+        var reg = data.user;
+        console.log('user_me:' + JSON.stringify(reg));
 
         for(var i = 0; i < data.usertype.length; i ++){
           console.log(data.usertype[i]);

@@ -19,7 +19,9 @@ router.get('/getVendors', (req, res, next) => {
             vendors[x].categories = undefined;
         }    
         return res.json(vendors);
+
         
+       
     });
 });
 
@@ -62,14 +64,66 @@ router.post('/addVendor', (req, res, next) => {
     });
 });
 
+
+//Update Vendor
+router.put('/UpdateVendor', (req, res, next) => {
+    console.log("In /admin/UpdateVendor");
+    let newVendor = new Vendor;
+    newVendor.VendorName = req.body.VendorName;
+    newVendor.VendorPhone = req.body.VendorPhone;
+    newVendor.VendorEmail = req.body.VendorEmail;
+    newVendor.VendorOwner = req.body.VendorOwner;
+    newVendor.VendorLocation.floor = req.body.floor;
+    newVendor.VendorLocation.tower = req.body.tower;
+    newVendor.VendorLocation.campus = req.body.campus;
+    Vendor.UpdateVendor(newVendor, (err, vendor) => {
+        //console.log('new' + newVendor.VendorName);
+        if (err) {
+            res.json({success: false, msg: 'Failed to add Vendor. Error: ' + err});
+        } else {
+            let newVendorUser = new User;
+            newVendorUser.vendorName = req.body.VendorName;
+            newVendorUser.userDisplayName = req.body.VendorOwner;
+            newVendorUser.email= req.body.VendorEmail;
+            newVendorUser.password= req.body.VendorPassword;
+            newVendorUser.userType.push("customer"); // a vendor user is also a customer
+            newVendorUser.userType.push("vendor");
+            User.addUser(newVendorUser, (err, user) => {
+                if (err) {
+                  res.json({success: false, msg: 'Added Vendor: ' + vendor.VendorName + '. Failed to add Vendor User. Error: ' + err});
+                } else {
+                  res.json({success: true, msg: 'Added Vendor: ' + vendor.VendorName + '. Added Vendor User: ' + user.userDisplayName});
+                }
+            });
+        }
+    });
+});
+
 // Get Specific Vendor
-router.get('/getVendor/:id', (req, res, next) => {
-    res.send('getVendor API Endpoint');
+router.get('/getVendor/:email', (req, res, next) => {
+    console.log("In /admin/getVendor");
+    var username = req.params.email;
+    //console.log('email:' + username);
+    Vendor.getVendorByEmail(username,(err, vendor) => {
+        //console.log('Vendor:' + JSON.stringify(vendor));
+        if (err) throw err;
+        if (!vendor) {
+            return res.json({success: false, msg: 'Vendors not found'});
+        }
+        //console.log('vendorName:' + vendor.VendorName);
+        return res.json(vendor);
+        // return res.json({
+        //     success: true, 
+        //     vendor: vendor,
+        //     msg:'we did it: ' + username
+        //   });
+  
+    });
 });
 
 // Update Specific Vendor
-router.put('/updateVendor/:id', (req, res, next) => {
-    res.send('updateVendor API Endpoint');
-});
+// router.put('/updateVendor/:id', (req, res, next) => {
+//     res.send('updateVendor API Endpoint');
+// });
 
 module.exports = router;

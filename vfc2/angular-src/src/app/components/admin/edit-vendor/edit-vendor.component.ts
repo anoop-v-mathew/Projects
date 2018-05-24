@@ -11,14 +11,22 @@ export class EditVendorComponent implements OnInit {
 
   constructor(private _AdminService: AdminService, private route: ActivatedRoute, private router: Router) { }
   Vendor: any;
-  ID: any;
+  email: any;
 
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
-        this.ID = +params['id'];
+        this.email = +params['email'];
     });
-    console.log(this.ID);
-    //this.Vendor = this._AdminService.getVendor(this.ID);
+    console.log(this.email);
+
+    
+    
+    this._AdminService.getVendor(this.email)
+      .subscribe(vendor => {
+          this.Vendor = vendor;
+        
+        }
+      );
   }
 
   onSubmit(formValue: any) {
@@ -30,13 +38,28 @@ export class EditVendorComponent implements OnInit {
       tower: formValue.tower,
       floor: formValue.floor,
     };
-    this.Vendor.VendorName = formValue.VendorName;
-    this.Vendor.VendorPhone = formValue.VendorPhone;
-    this.Vendor.VendorEmail = formValue.VendorEmail;
-    this.Vendor.VendorLocation = newLocation;
-    this.Vendor.VendorOwner = formValue.VendorOwner;
-    this.Vendor.VendorPassword = formValue.VendorPassword;
 
+    const Vendor = {
+      VendorName: formValue.VendorName,
+      VendorPhone: formValue.VendorPhone,
+      VendorEmail: formValue.VendorEmail,
+      //VendorLocation: newLocation,
+      floor: formValue.floor,
+      tower: formValue.tower,
+      campus: formValue.campus,
+      VendorOwner: formValue.VendorOwner,
+      VendorPassword: formValue.VendorPassword
+    }
+
+
+    this._AdminService.UpdateVendor(Vendor).subscribe(data => {
+      if (data.success) {
+        console.log(data.msg);
+      }
+      else {
+        console.log(data.msg);
+      }
+    });
     //this._AdminService.updateVendor(this.Vendor);
     this.router.navigate(['admin']);
   }

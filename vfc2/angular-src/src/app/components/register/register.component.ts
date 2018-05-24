@@ -55,6 +55,7 @@ export class RegisterComponent implements OnInit {
         flashMsg = 'Congratulations! You are now registered!';
         cssCls = 'alert-success';
         target = 'Login';
+        
       } else {
         flashMsg = 'Error: ' + data.msg;
         cssCls = 'alert-danger';

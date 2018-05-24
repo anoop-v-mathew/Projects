@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 //import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpModule, Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+//import { userInfo } from 'os';
 // import { Init } from './initial-vendors';
 //import {CookieService} from 'ngx-cookie-service';
 
@@ -33,10 +34,20 @@ export class AdminService {
     .map(res => res.json());
   }
 
-  // AddUserVendor(user){
-  //   let headers = new Headers();
-  //   headers.append('Content-Type', 'application/json');
-  //   return this._http.post(this._adminAPI + '/addVendorUser', user, {headers: headers})
-  //   .map(res=> res.json() );
-  // }
+  UpdateVendor(user){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this._http.post('http://localhost:3000/admin/UpdateVendor', user,{headers: headers})
+    .map(res => res.json());
+  }
+
+  getVendor(email): any {
+    let headers = new Headers();
+    //headers.append('Content-Type', 'application/json');
+    return this._http.get('http://localhost:3000/admin/getVendor/' + email)
+    .map(res => res.json());
+  }
 }
+
+
+// getVendor/:email

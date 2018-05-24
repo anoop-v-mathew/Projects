@@ -34,6 +34,7 @@ module.exports.getUserById = function(id, callback) {
 
 module.exports.getUserByEmail = function(email, callback) {
     const query = {"email": email};
+    console.log('query:'+ JSON.stringify(query));
     User.findOne(query, callback);
 }
 
@@ -45,6 +46,17 @@ module.exports.addUser = function(newUser, callback) {
       if (err) throw err;
       newUser.password = hash;
       newUser.save(callback);
+    });
+  });
+}
+
+module.exports.UpdateUser = function(newUser, callback){
+  bcrypt.genSalt(10, (err, salt) => {
+    // hash the password and replace the password
+    bcrypt.hash(newUser.password, salt, (err, hash) => {
+      if (err) throw err;
+      newUser.password = hash;
+      newUser.updateOne(callback);
     });
   });
 }
