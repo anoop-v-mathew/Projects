@@ -32,19 +32,19 @@
               </p>
   
               <div class="card-footer">
-                <!-- <span class="left">
-                  <a [routerLink]="['/UpdateVendor'+ vendor.VendorEmail]">
+                <span class="left">
+                  <a [routerLink]="['/UpdateVendor/'+ vendor.VendorEmail]">
                     <button type="button" class="btn btn-warning waves-light" mdbRippleRadius>Edit</button>
                   </a>
-                </span> -->
-
-                <span class="="left>
-                  <button type="button" class="btn btn-warning waves-light" (click)="onUpdate(vendor.VendorEmail)">Update</button>
                 </span>
+
+                <!-- <span class="="left>
+                  <button type="button" class="btn btn-warning waves-light" (click)="onUpdate(vendor.VendorEmail)">Update</button>
+                </span> -->
               
 
                 <span class="right">
-                  <a href="/admin" placement="top">
+                  <a >
                     <button type="button" onclick="deletebook(vendor.ID)" class="btn btn-danger waves-light" mdbRippleRadius>Delete</button>
                     <!-- <a (click)="deletebook(vendor.ID)">Delete</a> -->
                   </a>

@@ -47,6 +47,13 @@ export class AdminService {
     return this._http.get('http://localhost:3000/admin/getVendor/' + email)
     .map(res => res.json());
   }
+
+  DeleteVendor(email): any{
+    let headers = new Headers();
+    //headers.append('Content-Type', 'application/json');
+    return this._http.get('http://localhost:3000/admin/DeleteVendor/' + email)
+    .map(res => res.json());
+  }
 }
 
 

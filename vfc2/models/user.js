@@ -50,17 +50,26 @@ module.exports.addUser = function(newUser, callback) {
   });
 }
 
-module.exports.UpdateUser = function(newUser, callback){
-  bcrypt.genSalt(10, (err, salt) => {
-    // hash the password and replace the password
-    bcrypt.hash(newUser.password, salt, (err, hash) => {
-      if (err) throw err;
-      newUser.password = hash;
-      newUser.updateOne(callback);
-    });
-  });
+module.exports.UpdateUser = function(updateUser, callback){
+  const Name = updateUser.VendorName;
+  const Email = updateUser.VendorEmail;
+  //const Phone = updateUser.VendorPhone;
+  const Owner = updateUser.VendorOwner;
+  //const Location = updateUser.VendorLocation;
+
+  const query = {"email": Email};
+
+    User.update(query, {$set:{
+      userDisplayName: Owner,
+      email: Email,
+      vendorName: Name
+    }}, callback);
 }
 
+module.exports.DeleteUser = function(email, callback){
+  const query = {"email" : email};
+  User.deleteOne(query, callback);
+}
 module.exports.comparePassword = function(rawPassword, hashedPassword, callback) {
   bcrypt.compare(rawPassword, hashedPassword, (err, isMatch) => {
     if (err) throw err;

@@ -26,9 +26,9 @@ router.get('/getVendors', (req, res, next) => {
 });
 
 // Delete Vendor
-router.delete('/deleteVendor', (req, res, next) => {
-    res.send('deleteVendor API Endpoint');
-});
+// router.delete('/deleteVendor', (req, res, next) => {
+//     res.send('deleteVendor API Endpoint');
+// });
 
 // Add Vendor
 router.post('/addVendor', (req, res, next) => {
@@ -66,38 +66,38 @@ router.post('/addVendor', (req, res, next) => {
 
 
 //Update Vendor
-router.put('/UpdateVendor', (req, res, next) => {
+router.post('/UpdateVendor', (req, res, next) => {
     console.log("In /admin/UpdateVendor");
     let newVendor = new Vendor;
     newVendor.VendorName = req.body.VendorName;
     newVendor.VendorPhone = req.body.VendorPhone;
     newVendor.VendorEmail = req.body.VendorEmail;
     newVendor.VendorOwner = req.body.VendorOwner;
-    newVendor.VendorLocation.floor = req.body.floor;
-    newVendor.VendorLocation.tower = req.body.tower;
-    newVendor.VendorLocation.campus = req.body.campus;
+    newVendor.VendorLocation = req.body.VendorLocation;
     Vendor.UpdateVendor(newVendor, (err, vendor) => {
         //console.log('new' + newVendor.VendorName);
         if (err) {
-            res.json({success: false, msg: 'Failed to add Vendor. Error: ' + err});
+            res.json({success: false, msg: 'Failed to update Vendor. Error: ' + err});
         } else {
             let newVendorUser = new User;
             newVendorUser.vendorName = req.body.VendorName;
             newVendorUser.userDisplayName = req.body.VendorOwner;
             newVendorUser.email= req.body.VendorEmail;
-            newVendorUser.password= req.body.VendorPassword;
-            newVendorUser.userType.push("customer"); // a vendor user is also a customer
-            newVendorUser.userType.push("vendor");
-            User.addUser(newVendorUser, (err, user) => {
+            //newVendorUser.password= req.body.VendorPassword;
+            //newVendorUser.userType.push("customer"); // a vendor user is also a customer
+            //newVendorUser.userType.push("vendor");
+            User.UpdateUser(newVendorUser, (err, user) => {
                 if (err) {
-                  res.json({success: false, msg: 'Added Vendor: ' + vendor.VendorName + '. Failed to add Vendor User. Error: ' + err});
+                  res.json({success: false, msg: 'Update Vendor: ' + vendor.VendorName + '. Failed to add Vendor User. Error: ' + err});
                 } else {
-                  res.json({success: true, msg: 'Added Vendor: ' + vendor.VendorName + '. Added Vendor User: ' + user.userDisplayName});
+                  res.json({success: true, msg: 'Updated Vendor: ' + vendor.VendorName + '. Added Vendor User: ' + user.userDisplayName});
                 }
             });
         }
     });
 });
+
+
 
 // Get Specific Vendor
 router.get('/getVendor/:email', (req, res, next) => {
@@ -121,8 +121,31 @@ router.get('/getVendor/:email', (req, res, next) => {
     });
 });
 
-// Update Specific Vendor
-// router.put('/updateVendor/:id', (req, res, next) => {
+router.delete('/DeleteVendor/:email', (req, res, next) => {
+console.log("In /admin/DeleteVendor");
+var email = req.param.email;
+Vendor.DeleteVendor(email,(err, vendor) => {
+
+    if (err) {
+        res.json({success: false, msg: 'Failed to Delete Vendor. Error: ' + err});
+      } else {
+          User.DeleteUser(email, (err, vendor) => {
+              if(err){
+                res.json({success: false, msg: 'Failed to Delete User. Error: ' + err});
+              }
+              else{
+                res.json({success: true, msg: 'Deleted Succefully: '});
+              }
+          })
+        
+      }
+}
+)
+});
+//Update Specific Vendor
+// router.put('/updateVendor/:email', (req, res, next) => {
+//     console.log("In /admin/UpdateVendor");
+//     var username = req.param.email;
 //     res.send('updateVendor API Endpoint');
 // });
 

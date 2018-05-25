@@ -53,10 +53,29 @@ module.exports.addVendor = function(newVendor, callback) {
 }
 
 module.exports.UpdateVendor = function(VendorUpdate, callback){
-  const query = {"email": VendorUpdate.email};
-  Vendor.updateOne(query, UpdatedVendor, callback)
+  const query = {"VendorEmail": VendorUpdate.VendorEmail};
+  console.log('query:' +JSON.stringify( query));
+  const Name = VendorUpdate.VendorName;
+  const Email = VendorUpdate.VendorEmail;
+  const Phone = VendorUpdate.VendorPhone;
+  const Owner = VendorUpdate.VendorOwner;
+  const Location = VendorUpdate.VendorLocation;
+
+  //Vendor.update(query, VendorUpdate, callback);
+  Vendor.update(query,{$set: {
+    VendorName: Name, 
+    VendorEmail: Email, 
+    VendorPhone:Phone, 
+    VendorOwner:Owner,
+    VendorLocation: Location
+  }} , callback);
+
 }
 
+module.exports.DeleteVendor = function(email, callback){
+  const query={"VendorEmail": email};
+  Vendor.deleteOne(query, callback);
+}
 module.exports.getVendorByEmail = function(email, callback) {
   //console.log('email_models:' + email)
   const query = {"VendorEmail": email};

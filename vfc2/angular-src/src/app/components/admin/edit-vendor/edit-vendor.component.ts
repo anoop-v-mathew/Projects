@@ -14,8 +14,9 @@ export class EditVendorComponent implements OnInit {
   email: any;
 
   ngOnInit(): void {
-    this.route.params.forEach((params: Params) => {
-        this.email = +params['email'];
+    this.route.params.subscribe(params => {
+      this.email = params['email'];
+      console.log('email:' + this.email);
     });
     console.log(this.email);
 
@@ -24,7 +25,7 @@ export class EditVendorComponent implements OnInit {
     this._AdminService.getVendor(this.email)
       .subscribe(vendor => {
           this.Vendor = vendor;
-        
+          //console.log('Vendor: ' +JSON.stringify( vendor));
         }
       );
   }
@@ -43,10 +44,10 @@ export class EditVendorComponent implements OnInit {
       VendorName: formValue.VendorName,
       VendorPhone: formValue.VendorPhone,
       VendorEmail: formValue.VendorEmail,
-      //VendorLocation: newLocation,
-      floor: formValue.floor,
-      tower: formValue.tower,
-      campus: formValue.campus,
+      VendorLocation: newLocation,
+      // floor: formValue.floor,
+      // tower: formValue.tower,
+      // campus: formValue.campus,
       VendorOwner: formValue.VendorOwner,
       VendorPassword: formValue.VendorPassword
     }
