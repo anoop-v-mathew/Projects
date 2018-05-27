@@ -40,6 +40,8 @@ import { VendorService } from './services/vendor.service';
 import { CustomerService } from './services/customer.service';
 import {AuthService} from './services/auth.service';
 
+import { CookieService } from 'ngx-cookie-service';
+
 //Routing
 const appRoutes: Routes = [
   { path:'Login', component: LoginComponent },
@@ -51,12 +53,12 @@ const appRoutes: Routes = [
   { path: 'AddVendor', component:AddVendorComponent },
   { path: 'Menu', component: VeiwMenuComponent },
   { path: 'charge', component: VeiwChargesComponent },
-  { path: 'Updatecharge/:id', component: EditChargesComponent },
-  { path: 'UpdateItem/:id/:id2', component: EditMenuComponent },
-  { path: 'AddItem/:id', component:AddItemComponent },
+  { path: 'Updatecharge/:name', component: EditChargesComponent },
+  { path: 'UpdateItem/:name/:name2', component: EditMenuComponent },
+  { path: 'AddItem/:name', component:AddItemComponent },
   { path: 'AddCatog', component:AddMenuComponent },
   { path: 'AddCharge', component: AddChargesComponent },
-  { path: 'cumenu/:id', component: CustomerMenuComponent },
+  { path: 'cumenu/:email', component: CustomerMenuComponent },
   { path: 'customer', component: CuVendorListComponent }
 ];
 
@@ -95,10 +97,11 @@ export const routing = RouterModule.forRoot(appRoutes);
     HttpModule,
     FormsModule,
     MDBBootstrapModule.forRoot(),
-    FlashMessagesModule.forRoot()
+    FlashMessagesModule.forRoot(),
+    
   ],
   providers: [
-    AdminService, VendorService, AuthService
+    AdminService, VendorService, AuthService, CookieService
   ],
   bootstrap: [ AppComponent ],
   schemas: [ NO_ERRORS_SCHEMA ]

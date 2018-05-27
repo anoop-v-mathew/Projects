@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import{CustomerService} from '../../../services/customer.service';
-//import {CookieService} from 'ngx-cookie-service';
+import {CookieService} from 'ngx-cookie-service';
 import { forEach } from '@angular/router/src/utils/collection';
-import { ActivatedRoute, Params } from "@angular/router";
+//import { ActivatedRoute, Params } from "@angular/router";
 import { Location } from "@angular/common";
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-customer-menu',
@@ -12,22 +13,28 @@ import { Location } from "@angular/common";
 })
 export class CustomerMenuComponent implements OnInit {
 
-  constructor(private _customer: CustomerService, private route: ActivatedRoute, private location: Location) { }
-  id: any;
-  Vendor: any[];
-  Menus: any[];
-  VendorName: any[];
-  ngOnInit() {
-    this.route.params.forEach((params: Params) => {
-      this.id = +params['id'];
-      console.log('ID' + this.id);
+  Menus: any[] = [];
+  Vendor: any[] = [];
+  Email: any;
+  constructor(private _CustomerService: CustomerService,private _cookieService:CookieService,
+    private route: ActivatedRoute,
+    private router: Router,) { }
 
+  ngOnInit() {
+
+    this.route.params.subscribe(params => {
+      this.Email = params['email'];
+      console.log('email:' + this.Email);
     });
-    //console.log('ServiceMenu:' +this._AdminService.getMenu(this.id))
-   // this.Vendor = this._customer.getVendor(this.id);
-    //this.VendorName = this.Vendors[0].VendorName;
-    //console.log('vendorName' + this.VendorName);
-    //this.Menus = this._customer.getMenu(this.id);
+
+    //this.Email = this._cookieService.get("username");
+
+    this._CustomerService.getVendor(this.Email)
+    .subscribe(vendor => {
+      this.Vendor = vendor;
+      console.log('Vendor:' +JSON.stringify(this.Vendor));
+    })
+
   }
 
 }

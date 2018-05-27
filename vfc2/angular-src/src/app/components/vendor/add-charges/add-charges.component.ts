@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import{VendorService} from '../../../services/vendor.service';
-//import {CookieService} from 'ngx-cookie-service';
+import {CookieService} from 'ngx-cookie-service';
 import { forEach } from '@angular/router/src/utils/collection';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
@@ -11,12 +11,15 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class AddChargesComponent implements OnInit {
 
-  constructor(private _VendorSerice: VendorService, private route: ActivatedRoute, private router: Router) { }
+  Email: any;
+  Vendor:any;
+  constructor(private _VendorSerice: VendorService, private route: ActivatedRoute, private router: Router, private _cookieService:CookieService ) { }
 
   ngOnInit() {
   }
 
   onSubmit(formValue: any){
+    this.Email = this._cookieService.get("username");
     const newItem = {
      // ID: nextID,
     name: formValue.name,
@@ -26,9 +29,25 @@ export class AddChargesComponent implements OnInit {
     applicable: formValue.applicable
 
     };
-     //this._AdminService.Additem(newItem, this.Email);
-     //this._VendorSerice.AddCharge(newItem);
+    this.Vendor = {
+
+      charges : newItem
+    }
+
+    this._VendorSerice.addCharge(this.Email, this.Vendor)
+    .subscribe(data =>{
+      if (data.success) {
+        console.log(data.msg);
+      }
+      else {
+        console.log(data.msg);
+      }
+    })
+
+     
      this.router.navigate(['charge'])
+
+
   }
 
 }

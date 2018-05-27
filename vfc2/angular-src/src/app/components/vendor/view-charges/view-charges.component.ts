@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import{VendorService} from '../../../services/vendor.service';
-//import {CookieService} from 'ngx-cookie-service';
+import {CookieService} from 'ngx-cookie-service';
 import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
@@ -10,19 +10,20 @@ import { forEach } from '@angular/router/src/utils/collection';
 })
 export class VeiwChargesComponent implements OnInit {
 
+  Menus: any[] = [];
   Vendor: any[] = [];
-  Charges: any[] = [];
   Email: any;
-    
-    constructor(private _VendorSerice: VendorService) { }
+  constructor(private _VendorSerice: VendorService,private _cookieService:CookieService) { }
+
 
     ngOnInit() {
-      //this.Email = this._CookieServie.get("username");
-      //this.Vendor = this._VendorSerice.getVendorbyEmail(this.Email);
-      //this.Charges = this._VendorSerice.getChargebyEmail(this.Email);
-      console.log();
-        
-        
+      this.Email = this._cookieService.get("username");
+
+    this._VendorSerice.getVendor(this.Email)
+    .subscribe(vendor => {
+      this.Vendor = vendor;
+      console.log('Vendor:' +JSON.stringify(this.Vendor));
+    })
     }
 
 }

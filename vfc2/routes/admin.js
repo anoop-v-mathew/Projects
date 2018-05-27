@@ -14,14 +14,11 @@ router.get('/getVendors', (req, res, next) => {
         if (!vendors) {
             return res.json({success: false, msg: 'Vendors not found'});
         }
-        for (let x=0; x < vendors.length; x++) {
-            vendors[x].charges = undefined;
-            vendors[x].categories = undefined;
-        }    
+        // for (let x=0; x < vendors.length; x++) {
+        //     vendors[x].charges = undefined;
+        //     vendors[x].categories = undefined;
+        // }    
         return res.json(vendors);
-
-        
-       
     });
 });
 
@@ -103,21 +100,16 @@ router.post('/UpdateVendor', (req, res, next) => {
 router.get('/getVendor/:email', (req, res, next) => {
     console.log("In /admin/getVendor");
     var username = req.params.email;
-    //console.log('email:' + username);
+    
     Vendor.getVendorByEmail(username,(err, vendor) => {
-        //console.log('Vendor:' + JSON.stringify(vendor));
+
         if (err) throw err;
         if (!vendor) {
             return res.json({success: false, msg: 'Vendors not found'});
         }
-        //console.log('vendorName:' + vendor.VendorName);
+        
         return res.json(vendor);
-        // return res.json({
-        //     success: true, 
-        //     vendor: vendor,
-        //     msg:'we did it: ' + username
-        //   });
-  
+        
     });
 });
 
@@ -142,11 +134,125 @@ Vendor.DeleteVendor(email,(err, vendor) => {
 }
 )
 });
-//Update Specific Vendor
-// router.put('/updateVendor/:email', (req, res, next) => {
-//     console.log("In /admin/UpdateVendor");
-//     var username = req.param.email;
-//     res.send('updateVendor API Endpoint');
-// });
 
+
+router.get('/Menu/:email', (req, res, next)=> {
+    console.log("In /admin/Menu");
+    var username = req.params.email;
+    
+    Vendor.getMenuByEmail(username,(err, vendor) => {
+        
+        if (err) throw err;
+        if (!vendor) {
+            return res.json({success: false, msg: 'Vendors not found'});
+        }
+        
+        return res.json(vendor);
+    });
+    
+})
+
+router.put('/Addcategories/:email',(req, res, next) =>{
+    console.log("In /Menu/Addcategories");
+    var username = req.params.email;
+    let Menu = new Vendor;
+    let VendorHold = new Vendor;
+
+    
+
+    Menu.categories = req.body.categories;
+
+       console.log('Menu: ' +JSON.stringify(Menu.categories));
+
+    Vendor.addcategories(username, Menu ,(err, vendor)=>{
+        if(err){
+            res.json({success: false, msg: 'Failed to Add categories. Error: ' + err});
+          }
+          else{
+            res.json({success: true, msg: 'Add categories Succefully: '});
+          }
+       
+    })
+    
+} )
+
+router.put('/AddMenuItem/:email',(req, res, next) =>{
+    console.log("In /Menu/Addcategories");
+    var username = req.params.email;
+    let Menu = new Vendor;
+    Menu.categories = req.body.categories;
+
+       console.log('Menu: ' +JSON.stringify(Menu.categories));
+
+    Vendor.addMenuItem(username, Menu ,(err, vendor)=>{
+        if(err){
+            res.json({success: false, msg: 'Failed to Add Menu. Error: ' + err});
+          }
+          else{
+            res.json({success: true, msg: 'Add Menu Succefully: '});
+          }
+       
+    })
+    
+} )
+
+router.put('/Addcharge/:email',(req, res, next) =>{
+    console.log("In /Menu/Addcategories");
+    var username = req.params.email;
+    let Menu = new Vendor;
+    Menu.charges = req.body.charges;
+
+       console.log('Menu: ' +JSON.stringify(Menu.charges));
+
+    Vendor.addCharge(username, Menu ,(err, vendor)=>{
+        if(err){
+            res.json({success: false, msg: 'Failed to Add categories. Error: ' + err});
+          }
+          else{
+            res.json({success: true, msg: 'Add categories Succefully: '});
+          }
+       
+    })
+    
+} )
+
+router.put('/UpdateItem/:email',(req, res, next) =>{
+    console.log("In /Menu/Addcategories");
+    var username = req.params.email;
+    let Menu = new Vendor;
+    Menu.categories = req.body.categories;
+
+       console.log('Menu: ' +JSON.stringify(Menu.categories));
+
+    Vendor.UpdateMenuItem(username, Menu ,(err, vendor)=>{
+        if(err){
+            res.json({success: false, msg: 'Failed to Add Menu. Error: ' + err});
+          }
+          else{
+            res.json({success: true, msg: 'Add Menu Succefully: '});
+          }
+       
+    })
+    
+} )
+
+router.put('/Updatecharge/:email',(req, res, next) =>{
+    console.log("In /Menu/Addcharges");
+    var username = req.params.email;
+    let Charge = new Vendor;
+    Charge.charges = req.body.charges;
+
+       console.log('Menu: ' +JSON.stringify(Charge.charges));
+
+    Vendor.UpdateCharge(username, Menu ,(err, vendor)=>{
+        if(err){
+            res.json({success: false, msg: 'Failed to Add categories. Error: ' + err});
+          }
+          else{
+            res.json({success: true, msg: 'Add categories Succefully: '});
+          }
+       
+    })
+    
+} )
 module.exports = router;

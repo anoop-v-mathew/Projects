@@ -11,7 +11,7 @@
       <br>
       <small></small>      
     </h1>
-    <div class="col-sm-10 col-sm-offset-1" *ngFor='let menu of Menus'>
+    <div class="col-sm-10 col-sm-offset-1" *ngFor='let menu of Vendor.categories'>
       <h2 class="section-heading h2 pt-4">{{menu.name}}</h2>
       <div class="col-md-4 col-sm-6">
         <div class="card-container" *ngFor='let items of menu.items'>
@@ -64,7 +64,7 @@
                   </a>
                 </div> -->
                 <span class="left">
-                    <a [routerLink]="['/UpdateItem',menu.ID,items.ID]">
+                    <a [routerLink]="['/UpdateItem',menu.name,items.name]">
                       <button type="button" class="btn btn-warning waves-light" mdbRippleRadius>Edit</button>
                     </a>
                   </span>
@@ -76,7 +76,7 @@
       </div>
       <!-- add new item -->
 
-      <a [routerLink]="['/AddItem',menu.ID]">
+      <a [routerLink]="['/AddItem',menu.name]">
         <button type="button" class="btn btn-warning waves-light" mdbRippleRadius>Add {{menu.name}}</button>
       </a>
     </div>

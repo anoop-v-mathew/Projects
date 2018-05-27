@@ -25,7 +25,7 @@ export class ViewVendorsComponent implements OnInit {
       this._AdminService.getVendors()
       .subscribe(vendors => {
           this.vendors = vendors;
-
+          console.log('vendors:' + JSON.stringify(vendors));
         }
       );
     }

@@ -31,4 +31,12 @@ export class CustomerService {
     return this._http.get(this._adminAPI + '/getVendors')
     .map(res => res.json());
   }
+
+  getVendor(email): any {
+    let headers = new Headers();
+    //headers.append('Content-Type', 'application/json');
+    return this._http.get('http://localhost:3000/admin/getVendor/' + email)
+    .map(res => res.json());
+  }
+
 }

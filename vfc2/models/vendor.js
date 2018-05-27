@@ -34,13 +34,61 @@ const VendorSchema = mongoose.Schema({
     }
   },
   charges: {
-    type: mongoose.Schema.Types.Mixed
+    name:{
+      type: String,
+      required: true
+    },
+    type:{
+      type: String,
+      required: true
+    },
+    value:{
+      type: Number,
+      required: true
+    },
+    applicable:{
+      type: mongoose.Schema.Types.Mixed
+    }
+    
   },
-  categories: {
-    type: mongoose.Schema.Types.Mixed
-  }
+  categories:[{
+    name:{
+      type: String,
+      required: true
+    },
+    items:[{
+      ID:{
+        type: Number,
+        required: true
+      },
+      name:{
+        type: String,
+      required: true
+      },
+      price:{
+        type: Number,
+        required: true
+      },
+      currency:{
+        type: String,
+        required: true
+      },
+      preparation_time:{
+        type: String,
+        required: true
+      },
+      type:{
+        type: String,
+        required: true
+      }
+    }]
+  }]
+  
 });
 
+
+
+// const Menu = module.exports = mongoose.model('Vendor', MenuSchema);
 const Vendor = module.exports = mongoose.model('Vendor', VendorSchema);
 
 module.exports.getVendors = function(callback) {
@@ -51,6 +99,122 @@ module.exports.addVendor = function(newVendor, callback) {
   //console.log('Vendor' +JSON.stringify( newVendor));
   newVendor.save(callback);
 }
+
+module.exports.addcategories = function(email, Menu,  callback){
+  
+  const query = {"VendorEmail": email};
+  const Name = Menu.categories[0].name;
+  const Items = [];
+
+  console.log('email:'+ email + 'query:' + JSON.stringify(query) + 'name: '+ Name );
+  Vendor.update(query,{$push:{
+    categories:
+    {
+      name: Name, 
+      items: []
+    }
+  
+  }
+}, callback);
+
+}
+
+module.exports.addCharge = function(email, Menu,  callback){
+  
+  const query = {"VendorEmail": email};
+  const Name = Menu.charges.name;
+  const Type = Menu.charges.type;
+  const Value = Menu.charges.value;
+  const Applicable = Menu.charges.applicable;
+
+  console.log('email:'+ email + 'query:' + JSON.stringify(query) + 'name: '+ Name );
+  Vendor.update(query,{$push:{
+    charges:
+    {
+      name: Name,
+      type: Type,
+      value: Value,
+      applicable: Applicable
+    }
+  
+  }
+}, callback);
+
+}
+
+module.exports.addMenuItem = function(email, Menu, callback){
+  
+  const query = {"VendorEmail": email, "categories.name": Menu.categories[0].name};
+  const Name = Menu.categories[0].items[0].name;
+  const Price = Menu.categories[0].items[0].price;
+  const Currency = Menu.categories[0].items[0].currency;
+  const Preparation_time = Menu.categories[0].items[0].preparation_time;
+  const Type = Menu.categories[0].items[0].type
+
+  //console.log('email:'+ email + 'query:' + JSON.stringify(query) + 'name: '+ Name );
+  Vendor.update(
+    query,
+    {$push:{"categories.$.items":{
+        
+       name:Name,
+       price: Price,
+       currency: Currency,
+       preparation_time: Preparation_time,
+       type: Type
+      }
+    }
+  }, callback);
+
+}
+
+module.exports.UpdateCharge = function(email, Menu, callback){
+  
+  const query = {"VendorEmail": email,"charges.name": Menu.charges[0].name};
+  const Name = Menu.charges[0].name;
+  const Type = Menu.charges[0].type;
+  const Value = Menu.charges[0].value;
+  const Applicable = Menu.charges[0].applicable;
+
+  console.log('email:'+ email + 'query:' + JSON.stringify(query) + 'name: '+ Name );
+//   Vendor.update(query,{$set:{
+//     charges:[
+//     {
+//       name: Name,
+//       type: Type,
+//       value: Value,
+//       applicable: Applicable
+//     }]
+  
+//   }
+// },false, true, callback);
+
+}
+
+module.exports.UpdateMenuItem = function(email, Menu, callback){
+  
+  const query = {"VendorEmail": email, "categories.name": Menu.categories[0].name};
+  const Name = Menu.categories[0].items[0].name;
+  const Price = Menu.categories[0].items[0].price;
+  const Currency = Menu.categories[0].items[0].currency;
+  const Preparation_time = Menu.categories[0].items[0].preparation_time;
+  const Type = Menu.categories[0].items[0].type
+
+  //console.log('email:'+ email + 'query:' + JSON.stringify(query) + 'name: '+ Name );
+  Vendor.update(
+    query,
+    {$set:{"categories.$.items":{
+        
+       name:Name,
+       price: Price,
+       currency: Currency,
+       preparation_time: Preparation_time,
+       type: Type
+      }
+    }
+  }, callback);
+
+}
+
 
 module.exports.UpdateVendor = function(VendorUpdate, callback){
   const query = {"VendorEmail": VendorUpdate.VendorEmail};
@@ -77,9 +241,16 @@ module.exports.DeleteVendor = function(email, callback){
   Vendor.deleteOne(query, callback);
 }
 module.exports.getVendorByEmail = function(email, callback) {
-  //console.log('email_models:' + email)
+  
   const query = {"VendorEmail": email};
-  //console.log('query:' +JSON.stringify( query));
   Vendor.findOne(query, callback);
-  //console.log('Vendor' +JSON.stringify( Vendor));
+  
 }
+
+module.exports.getMenuByEmail = function(email, callback) {
+  
+  const query = {"VendorEmail": email};
+  Vendor.findOne(query, categories, callback);
+  
+}
+

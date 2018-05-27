@@ -3,6 +3,8 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
+import {CookieService} from 'ngx-cookie-service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,11 +12,13 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 })
 export class LoginComponent implements OnInit {
 
+  Email: any;
 
   constructor(
     private _flashMessagesService: FlashMessagesService,
     private _AuthService: AuthService, 
-    private router: Router) { }
+    private router: Router,
+    private _cookieService:CookieService ) { }
 
   ngOnInit() { }
 
@@ -34,12 +38,15 @@ export class LoginComponent implements OnInit {
     //required fields
     this._AuthService.login(user).subscribe(data => {
       if(data.success){
-        // console.log(JSON.stringify(user));
-        // console.log('your registred');
-        // console.log(data);
-        var reg = data.user;
-        console.log('user_me:' + JSON.stringify(reg));
+        
+        var user = data.user;
+        this.Email = user.email;
+        console.log('user_me:' +this.Email);
 
+        this._cookieService.set('username', this.Email );
+        var Username = this._cookieService.get('username');
+
+        console.log('Username:' + Username);
         for(var i = 0; i < data.usertype.length; i ++){
           console.log(data.usertype[i]);
           if(data.usertype[i] == 'admin'){

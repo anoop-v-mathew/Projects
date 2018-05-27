@@ -21,6 +21,7 @@ const app = express();
 const users = require('./routes/users');
 const admin = require('./routes/admin');
 
+
 const port = 3000;
 
 app.use(cors());
@@ -42,6 +43,8 @@ app.use('/users', users);
 
 // Vendor routes
 app.use('/admin', admin);
+
+
 
 // Index Route
 app.get('/', (req, res) => {
