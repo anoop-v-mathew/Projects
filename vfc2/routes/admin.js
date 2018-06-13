@@ -31,6 +31,7 @@ router.get('/getVendors', (req, res, next) => {
 router.post('/addVendor', (req, res, next) => {
     console.log("In /admin/addVendor");
     let newVendor = new Vendor;
+    console.log("New Vendor Name: " + req.body.VendorName);
     newVendor.VendorName = req.body.VendorName;
     newVendor.VendorPhone = req.body.VendorPhone;
     newVendor.VendorEmail = req.body.VendorEmail;
@@ -38,6 +39,7 @@ router.post('/addVendor', (req, res, next) => {
     newVendor.VendorLocation.floor = req.body.floor;
     newVendor.VendorLocation.tower = req.body.tower;
     newVendor.VendorLocation.campus = req.body.campus;
+    console.log("New Vendor: "+ JSON.stringify( newVendor));
     Vendor.addVendor(newVendor, (err, vendor) => {
         console.log('new' + newVendor.VendorName);
         if (err) {

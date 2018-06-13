@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
         
         var user = data.user;
         this.Email = user.email;
-        console.log('user_me:' +this.Email);
+        console.log('user_email:' +this.Email);
 
         this._cookieService.set('username', this.Email );
         var Username = this._cookieService.get('username');
@@ -51,9 +51,11 @@ export class LoginComponent implements OnInit {
           console.log(data.usertype[i]);
           if(data.usertype[i] == 'admin'){
             target = 'admin';
+            console.log('target:' + target);
           }
           if(data.usertype[i] == 'vendor'){
-            target = 'vendor';
+            target = 'vendor';            
+            console.log('target:' + target);
           }
         }
       } else {
@@ -61,6 +63,7 @@ export class LoginComponent implements OnInit {
         cssCls = 'alert-danger';
         target = 'Login';;
       }
+      console.log(flashMsg + " : " + target + " : " + this.Email);
       flashMessagesService.show(flashMsg, { cssClass: cssCls, timeout: 3000 });
       rt.navigate([target]);
     });

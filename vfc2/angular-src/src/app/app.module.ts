@@ -33,6 +33,7 @@ import { DelChargesComponent } from './components/vendor/del-charges/del-charges
 import { AddItemComponent } from './components/vendor/add-item/add-item.component';
 import { CustomerMenuComponent } from './components/customer/customer-menu/customer-menu.component';
 import { CuVendorListComponent } from './components/customer/cu-vendor-list/cu-vendor-list.component';
+import { AboutComponent } from './components/about/about.component';
 
 // Application Service Imports
 import { AdminService } from './services/admin.service';
@@ -44,11 +45,12 @@ import { CookieService } from 'ngx-cookie-service';
 
 //Routing
 const appRoutes: Routes = [
-  { path:'Login', component: LoginComponent },
-  { path:'Register', component: RegisterComponent },
-  { path:'admin', component:ViewVendorsComponent },
-  { path:'vendor/:email', component:ViewVendorComponent },
-  { path:'vendor', component:VeiwMenuComponent },
+  { path: 'About', component: AboutComponent },
+  { path: 'Login', component: LoginComponent },
+  { path: 'Register', component: RegisterComponent },
+  { path: 'admin', component:ViewVendorsComponent },
+  { path: 'vendor/:email', component:ViewVendorComponent },
+  { path: 'vendor', component:VeiwMenuComponent },
   { path: 'UpdateVendor/:email', component:EditVendorComponent },
   { path: 'AddVendor', component:AddVendorComponent },
   { path: 'Menu', component: VeiwMenuComponent },
@@ -88,7 +90,8 @@ export const routing = RouterModule.forRoot(appRoutes);
     LoginComponent,
     AddItemComponent,
     CustomerMenuComponent,
-    CuVendorListComponent
+    CuVendorListComponent,
+    AboutComponent
     
   ],
   imports: [

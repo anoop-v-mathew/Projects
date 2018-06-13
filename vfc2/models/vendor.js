@@ -1,5 +1,53 @@
 const mongoose = require('mongoose');
 const config = require('../config/database'); 
+const ChargesSchema = mongoose.Schema({
+    name:{
+      type: String,
+      required: true
+    },
+    type:{
+      type: String,
+      required: true
+    },
+    value:{
+      type: Number,
+      required: true
+    },
+    applicable:{
+      type: mongoose.Schema.Types.Mixed
+    }
+});
+
+const ItemsSchema = mongoose.Schema({
+  name:{
+    type: String,
+    required: true
+  },
+  price:{
+    type: Number,
+    required: true
+  },
+  currency:{
+    type: String,
+    required: true
+  },
+  preparation_time:{
+    type: String,
+    required: true
+  },
+  type:{
+    type: String,
+    required: true
+  }
+});
+
+const CategoriesSchema = mongoose.Schema({
+  name:{
+    type: String,
+    required: true
+  },
+  items: [ItemsSchema]
+});
 
 // Vendor schema for Admin
 const VendorSchema = mongoose.Schema({
@@ -33,57 +81,8 @@ const VendorSchema = mongoose.Schema({
       required: true
     }
   },
-  charges: {
-    name:{
-      type: String,
-      required: true
-    },
-    type:{
-      type: String,
-      required: true
-    },
-    value:{
-      type: Number,
-      required: true
-    },
-    applicable:{
-      type: mongoose.Schema.Types.Mixed
-    }
-    
-  },
-  categories:[{
-    name:{
-      type: String,
-      required: true
-    },
-    items:[{
-      ID:{
-        type: Number,
-        required: true
-      },
-      name:{
-        type: String,
-      required: true
-      },
-      price:{
-        type: Number,
-        required: true
-      },
-      currency:{
-        type: String,
-        required: true
-      },
-      preparation_time:{
-        type: String,
-        required: true
-      },
-      type:{
-        type: String,
-        required: true
-      }
-    }]
-  }]
-  
+  charges: [ChargesSchema],
+  categories: [CategoriesSchema]
 });
 
 
@@ -96,7 +95,7 @@ module.exports.getVendors = function(callback) {
 }
 
 module.exports.addVendor = function(newVendor, callback) {
-  //console.log('Vendor' +JSON.stringify( newVendor));
+  console.log('Vendor' +JSON.stringify( newVendor));
   newVendor.save(callback);
 }
 
