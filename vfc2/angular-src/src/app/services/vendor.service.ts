@@ -23,10 +23,13 @@ export class VendorService {
     .map(res => res.json());
   }
 
-  addMenuItem(email, Menu){
+  addMenuItem(email, category) {
     let headers = new Headers();
-    return this._http.put('http://localhost:3000/admin/AddMenuItem/' + email, Menu, {headers: headers})
-    .map(res => res.json());
+    return this._http.put(
+      'http://localhost:3000/admin/AddMenuItem/' + email,
+      category,
+      { headers: headers }
+    ).map(res => res.json());
   }
 
   addCharge(email, Menu){

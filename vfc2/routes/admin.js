@@ -17,7 +17,7 @@ router.get('/getVendors', (req, res, next) => {
         // for (let x=0; x < vendors.length; x++) {
         //     vendors[x].charges = undefined;
         //     vendors[x].categories = undefined;
-        // }    
+        // }
         return res.json(vendors);
     });
 });
@@ -102,16 +102,16 @@ router.post('/UpdateVendor', (req, res, next) => {
 router.get('/getVendor/:email', (req, res, next) => {
     console.log("In /admin/getVendor");
     var username = req.params.email;
-    
+
     Vendor.getVendorByEmail(username,(err, vendor) => {
 
         if (err) throw err;
         if (!vendor) {
             return res.json({success: false, msg: 'Vendors not found'});
         }
-        
+
         return res.json(vendor);
-        
+
     });
 });
 
@@ -131,7 +131,7 @@ Vendor.DeleteVendor(email,(err, vendor) => {
                 res.json({success: true, msg: 'Deleted Succefully: '});
               }
           })
-        
+
       }
 }
 )
@@ -141,17 +141,17 @@ Vendor.DeleteVendor(email,(err, vendor) => {
 router.get('/Menu/:email', (req, res, next)=> {
     console.log("In /admin/Menu");
     var username = req.params.email;
-    
+
     Vendor.getMenuByEmail(username,(err, vendor) => {
-        
+
         if (err) throw err;
         if (!vendor) {
             return res.json({success: false, msg: 'Vendors not found'});
         }
-        
+
         return res.json(vendor);
     });
-    
+
 })
 
 router.put('/Addcategories/:email',(req, res, next) =>{
@@ -160,7 +160,7 @@ router.put('/Addcategories/:email',(req, res, next) =>{
     let Menu = new Vendor;
     let VendorHold = new Vendor;
 
-    
+
 
     Menu.categories = req.body.categories;
 
@@ -173,30 +173,25 @@ router.put('/Addcategories/:email',(req, res, next) =>{
           else{
             res.json({success: true, msg: 'Add categories Succefully: '});
           }
-       
+
     })
-    
+
 } )
 
 router.put('/AddMenuItem/:email',(req, res, next) =>{
-    console.log("In /Menu/Addcategories");
+    console.log("In /admin/AddMenuItem");
     var username = req.params.email;
-    let Menu = new Vendor;
-    Menu.categories = req.body.categories;
+    console.log('Menu: ' +JSON.stringify(req.body.category));
 
-       console.log('Menu: ' +JSON.stringify(Menu.categories));
-
-    Vendor.addMenuItem(username, Menu ,(err, vendor)=>{
-        if(err){
-            res.json({success: false, msg: 'Failed to Add Menu. Error: ' + err});
+    Vendor.addMenuItem(username, req.body.category, (err, vendor) => {
+        if(err) {
+            res.json({success: false, msg: 'Failed to Add Menu item. Error: ' + err});
           }
-          else{
-            res.json({success: true, msg: 'Add Menu Succefully: '});
+          else {
+            res.json({success: true, msg: 'Added Menu Item Succefully: '});
           }
-       
     })
-    
-} )
+})
 
 router.put('/Addcharge/:email',(req, res, next) =>{
     console.log("In /Menu/Addcategories");
@@ -213,9 +208,9 @@ router.put('/Addcharge/:email',(req, res, next) =>{
           else{
             res.json({success: true, msg: 'Add categories Succefully: '});
           }
-       
+
     })
-    
+
 } )
 
 router.put('/UpdateItem/:email',(req, res, next) =>{
@@ -233,9 +228,9 @@ router.put('/UpdateItem/:email',(req, res, next) =>{
           else{
             res.json({success: true, msg: 'Add Menu Succefully: '});
           }
-       
+
     })
-    
+
 } )
 
 router.put('/Updatecharge/:email',(req, res, next) =>{
@@ -253,8 +248,8 @@ router.put('/Updatecharge/:email',(req, res, next) =>{
           else{
             res.json({success: true, msg: 'Add categories Succefully: '});
           }
-       
+
     })
-    
+
 } )
 module.exports = router;
