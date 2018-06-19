@@ -181,9 +181,7 @@ router.put('/Addcategories/:email',(req, res, next) =>{
 router.put('/AddMenuItem/:email',(req, res, next) =>{
     console.log("In /admin/AddMenuItem");
     var username = req.params.email;
-    console.log('Menu: ' +JSON.stringify(req.body.category));
-
-    Vendor.addMenuItem(username, req.body.category, (err, vendor) => {
+    Vendor.addMenuItem(username, req.body, (err, vendor) => {
         if(err) {
             res.json({success: false, msg: 'Failed to Add Menu item. Error: ' + err});
           }
@@ -214,7 +212,7 @@ router.put('/Addcharge/:email',(req, res, next) =>{
 } )
 
 router.put('/UpdateItem/:email',(req, res, next) =>{
-    console.log("In /Menu/Addcategories");
+    console.log("In /admin/UpdateItem");
     var username = req.params.email;
     let Menu = new Vendor;
     Menu.categories = req.body.categories;

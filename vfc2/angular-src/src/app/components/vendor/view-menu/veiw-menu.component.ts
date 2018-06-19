@@ -21,10 +21,9 @@ export class VeiwMenuComponent implements OnInit {
     this._VendorSerice.getVendor(this.Email)
     .subscribe(vendor => {
       this.Vendor = vendor;
-      console.log('Vendor:' +JSON.stringify(this.Vendor));
     })
 
-    
+
 
   }
 

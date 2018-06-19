@@ -25,10 +25,9 @@ export class VendorService {
 
   addMenuItem(email, category) {
     let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
     return this._http.put(
-      'http://localhost:3000/admin/AddMenuItem/' + email,
-      category,
-      { headers: headers }
+      'http://localhost:3000/admin/AddMenuItem/' + email, category, { headers: headers }
     ).map(res => res.json());
   }
 

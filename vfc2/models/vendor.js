@@ -142,14 +142,9 @@ module.exports.addCharge = function(email, Menu,  callback){
 
 module.exports.addMenuItem = function(email, category, callback) {
 
+  console.log('email:'+ email + ' category:' + JSON.stringify(category.items[0]));
   const query = {"VendorEmail": email, "categories.name": category.name};
-  const Name = category.items[0].name;
-  const Price = category.items[0].price;
-  const Currency = category.items[0].currency;
-  const Preparation_time = category.items[0].preparation_time;
-  // const Type = Menu.categories[0].items[0].type // not part of scheme. #TODO: Remove
-
-  //console.log('email:'+ email + 'query:' + JSON.stringify(query) + 'name: '+ Name );
+  console.log('Qry : ' + JSON.stringify(query));
   Vendor.update(
     query,
     { $push: {
@@ -184,27 +179,15 @@ module.exports.UpdateCharge = function(email, Menu, callback){
 
 module.exports.UpdateMenuItem = function(email, Menu, callback){
 
-  const query = {"VendorEmail": email, "categories.name": Menu.categories[0].name};
+  const query = {"VendorEmail": email, "categories.name": Menu.categories[0].name, "categories.items.name": Menu.categories[0].items[0].name};
   const Name = Menu.categories[0].items[0].name;
   const Price = Menu.categories[0].items[0].price;
   const Currency = Menu.categories[0].items[0].currency;
   const Preparation_time = Menu.categories[0].items[0].preparation_time;
   const Type = Menu.categories[0].items[0].type
 
-  //console.log('email:'+ email + 'query:' + JSON.stringify(query) + 'name: '+ Name );
   Vendor.update(
-    query,
-    {$set:{"categories.$.items":{
-
-       name:Name,
-       price: Price,
-       currency: Currency,
-       preparation_time: Preparation_time,
-       type: Type
-      }
-    }
-  }, callback);
-
+    query, { $set: { "categories": Menu.categories } }, callback);
 }
 
 
