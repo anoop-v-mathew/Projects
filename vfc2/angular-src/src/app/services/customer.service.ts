@@ -39,4 +39,17 @@ export class CustomerService {
     .map(res => res.json());
   }
 
+  AddOrder(order){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    console.log('Order:' +JSON.stringify(order));
+    return this._http.post('http://localhost:3000/order/addOrder', order,{headers: headers})
+    .map(res => res.json());
+  }
+
+  getOrder(email): any{
+    let headers = new Headers();
+    return this._http.get('http://localhost:3000/order/getOrders/' + email)
+    .map(res => res.json());
+  }
 }

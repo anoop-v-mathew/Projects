@@ -35,7 +35,7 @@ export class EditChargesComponent implements OnInit {
     this._VendorSerice.getVendor(this.Email)
     .subscribe(vendor => {
       this.Vendor = vendor;
-      //console.log('Vendor:' +JSON.stringify(this.Vendor));
+      console.log('Vendor:' +JSON.stringify(this.Vendor));
 
       const len = this.Vendor.charges.length;
     for(let i = 0 ; i < len; i ++){
@@ -58,7 +58,7 @@ export class EditChargesComponent implements OnInit {
         
         this.Vendor.charges[i].applicable = formValue.applicable;
         //console.log('Charge: ' +JSON.stringify( this.Vendor));
-        this._VendorSerice.UpdateCharge(this.Email, this.Vendor)
+        this._VendorSerice.UpdateCharge+(this.Email, this.Vendor)
             .subscribe(data =>{
               if(data.success){
                 console.log(data.msg);

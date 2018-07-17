@@ -4,7 +4,15 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
-const config = require('./config/database')
+const config = require('./config/database');
+const ejs = require('ejs');
+const paypal = require('paypal-rest-sdk');
+
+paypal.configure({
+    'mode': 'sandbox', //
+    'client_id': 'AXw3uxWPTBb-KjHTB56GXgwfrMK5et1RrrbVvJwCAIPd9ImxwDLm1lj8si6HnOFNHEdWQQSmAUAHCGcj',
+    'client_secret': 'EGgE0KzsCScMXTapD5Ie4j7joctcplbJOhABSRkQdK7r4dLe0XB1Ys0VtDgccXliaz0rTPkMsWaBuiss'
+})
 
 mongoose.connect(config.database);
 
@@ -48,6 +56,35 @@ app.use('/admin', admin);
 // Order routes
 app.use('/order', orders);
 
+app.post('/pay', (req, res)=> {
+    const create_payment_json = {
+        "intent": "sale",
+        "payer": {
+            "payment_method": "paypal"
+        },
+        "redirect_urls": {
+            "return_url": "http://localhost:4200/Success",
+            "cancel_url": "http://localhost:4200/Failure"
+        },
+        "transactions": [{
+            "item_list": {
+                "items": [{
+                    "name": "item",
+                    "sku": "item",
+                    "price": "1.00",
+                    "currency": "USD",
+                    "quantity": 1
+                }]
+            },
+            "amount": {
+                "currency": "USD",
+                "total": "1.00"
+            },
+            "description": "This is the payment description."
+        }]
+    };
+})
+
 // Index Route
 app.get('/', (req, res) => {
     res.send('<h1>VFC APIs</h1> <p>'+
@@ -59,6 +96,7 @@ app.get('/', (req, res) => {
                 'PUT /admin/updateVendor/:id'
             );
 });
+
 
 app.listen(port, () => {
     console.log('Server started on port: ', + port);

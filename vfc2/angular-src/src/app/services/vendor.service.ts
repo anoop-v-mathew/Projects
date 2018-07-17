@@ -45,6 +45,8 @@ export class VendorService {
   }
 
   UpdateCharge(email, Menu){
+
+    console.log("inside UpdateCharge")
     let headers = new Headers();
     return this._http.put('http://localhost:3000/admin/Updatecharge/' + email, Menu, {headers: headers})
     .map(res => res.json());

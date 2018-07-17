@@ -10,11 +10,14 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "*",
     "cors": "*",
-    "express": "*",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
     "jsonwebtoken": "*",
     "mongoose": "*",
     "passport": "*",
-    "passport-jwt": "*"
+    "passport-jwt": "*",
+    "paypal-rest-sdk": "^1.8.1",
+    "randomstring": "^1.1.5"
   },
   "author": "Anoop & Bhargavi",
   "license": "ISC"

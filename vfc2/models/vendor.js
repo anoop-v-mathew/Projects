@@ -124,16 +124,17 @@ module.exports.addCharge = function(email, Menu,  callback){
   const Type = Menu.charges.type;
   const Value = Menu.charges.value;
   const Applicable = Menu.charges.applicable;
-
+  const charges = Menu.charges;
   console.log('email:'+ email + 'query:' + JSON.stringify(query) + 'name: '+ Name );
   Vendor.update(query,{$push:{
-    charges:
-    {
-      name: Name,
-      type: Type,
-      value: Value,
-      applicable: Applicable
-    }
+    charges
+    // charges:
+    // {
+    //   name: Name,
+    //   type: Type,
+    //   value: Value,
+    //   applicable: Applicable
+    // }
 
   }
 }, callback);
@@ -151,7 +152,6 @@ module.exports.addMenuItem = function(email, category, callback) {
       "categories.$.items": category.items[0]
     }
   }, callback);
-
 }
 
 module.exports.UpdateCharge = function(email, Menu, callback){

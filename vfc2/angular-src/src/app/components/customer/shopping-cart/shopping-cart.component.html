@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-md-12 " style="background-color:lightblue">Your Shopping Basket</div>
+    
+</div>
+<div class="row">
+    <div class="col-md-4" style="background-color:lightblue">Check out fast, i feel your hungry</div>
+</div>
+<div>
+    <div class="container">
+        <div class="row" *ngFor='let order of Orders'>
+      
+          <div class="col">
+            {{order.orderForVendor}}
+          </div>
+      
+          <div class="col" >
+            {{order.order.itemName}}
+          </div>
+      
+          <div class="col">
+            {{order.order.itemValue}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+
+          </div>
+          <div class="col">
+            <strong>Total</strong>
+          </div>
+          <div class="col">
+            {{Total}}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+
+          </div>
+            <div class="small-12 columns">
+              <a class="success button large expanded"
+                 [attr.disabled]="itemCount === 0 ? true : null"
+                 routerLink="/checkout">Proceed To Checkout</a>
+            </div>
+            <div class="col">
+              
+            </div>
+      </div>
+</div>
+
+
+

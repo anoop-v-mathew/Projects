@@ -3,6 +3,8 @@ const router = express.Router();
 
 const Order = require('../models/order');
 
+const randomstring = require("randomstring");
+
 // Get Orders
 router.get('/getOrders/:email', (req, res, next) => {
     console.log("In /order/getOrders");
@@ -28,14 +30,27 @@ router.get('/getOrders/:email', (req, res, next) => {
 // Add Order
 router.post('/addOrder', (req, res, next) => {
     console.log("In /order/addOrder");
+    
+    let orderList = new Array();
+
+
+    orderList.push(req.body.itemName);
+    orderList.push(randomstring.generate(7));
+    orderList.push(req.body.itemValue);
+    orderList.push(req.body.itemCurrency);
+    orderList.push(req.body.itemQuantity);
+    orderList.push(req.body.itemPreparationTime);
+
     let newOrder = new Order;
     newOrder.customerEmail = req.body.customerEmail;
-    newOrder.orderForVendor = req.body.VendorEmail;
-    newOrder.order = [];
-    newOrder.order[0].itemName = req.body.order.itemName;
-    newOrder.order[0].itemValue = req.body.order.itemValue;
-    newOrder.order[0].itemCurrency = req.body.order.itemCurrency;
-    newOrder.order[0].itemPreparationTime = req.body.order.itemPreparationTime;
+    newOrder.orderForVendor = req.body.orderForVendor;
+    newOrder.orders = orderList;
+    // newOrder.orders.name = req.body.itemName;
+    // newOrder.orders.sku = randomstring.generate(7);
+    // newOrder.orders.Price = req.body.itemValue;
+    // newOrder.orders.currency = req.body.itemCurrency;
+    // newOrder.orders.quantity = req.body.itemQuantity;
+    // newOrder.orders.itemPreparationTime = req.body.itemPreparationTime;
     let dt = new Date();
     newOrder.orderPlacedAt = dt.toISOString();
     console.log(newOrder.orderPlacedAt);

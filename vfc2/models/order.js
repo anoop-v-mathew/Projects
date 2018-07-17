@@ -20,19 +20,27 @@ const OrderSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  order: [{
-    itemName: {
+  orders: [{
+    name: {
       type: String,
       required: true      
     },
-    itemValue: {
+    sku:{
+      type: String,
+      required:true
+    },
+    price: {
       type: Number,
       required: true
     },
-    itemCurrency: {
+    currency: {
       type: String,
       required: true      
-    },    
+    },
+    quantity:{
+      type: Number,
+      required: true 
+    },
     itemPreparationTime: {
       type: Number,
       required: true
