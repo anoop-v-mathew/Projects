@@ -22,6 +22,24 @@ router.get('/getOrders/:email', (req, res, next) => {
     });
 });
 
+router.get('/getCheckoutOrders/:sku', (req, res, next) => {
+    console.log("In /order/getcheckoutOrders");
+    Order.getOpenCustomerOrders(req.params.sku,  (err, orders) => {
+        if (err) throw err;
+        console.log(orders.length);
+        if (!orders || orders.length == 0) {
+            return res.json({success: false, msg: 'Orders not found'});
+        }
+        // for (let x=0; x < vendors.length; x++) {
+        //     vendors[x].charges = undefined;
+        //     vendors[x].categories = undefined;
+        // }    
+
+        //console.log('Order: ' +JSON.stringify(orders));
+        return res.json(orders);
+    });
+});
+
 // Delete Vendor
 // router.delete('/deleteVendor', (req, res, next) => {
 //     res.send('deleteVendor API Endpoint');
@@ -31,26 +49,17 @@ router.get('/getOrders/:email', (req, res, next) => {
 router.post('/addOrder', (req, res, next) => {
     console.log("In /order/addOrder");
     
-    let orderList = new Array();
-
-
-    orderList.push(req.body.itemName);
-    orderList.push(randomstring.generate(7));
-    orderList.push(req.body.itemValue);
-    orderList.push(req.body.itemCurrency);
-    orderList.push(req.body.itemQuantity);
-    orderList.push(req.body.itemPreparationTime);
+    let orderList = new Order;
 
     let newOrder = new Order;
     newOrder.customerEmail = req.body.customerEmail;
     newOrder.orderForVendor = req.body.orderForVendor;
-    newOrder.orders = orderList;
-    // newOrder.orders.name = req.body.itemName;
-    // newOrder.orders.sku = randomstring.generate(7);
-    // newOrder.orders.Price = req.body.itemValue;
-    // newOrder.orders.currency = req.body.itemCurrency;
-    // newOrder.orders.quantity = req.body.itemQuantity;
-    // newOrder.orders.itemPreparationTime = req.body.itemPreparationTime;
+    newOrder.orderStatus = 'Open';
+    newOrder.OrderedList = req.body.OrderedList;
+    newOrder.sku = randomstring.generate(7);
+
+    console.log('Order: ' +JSON.stringify(newOrder));
+    
     let dt = new Date();
     newOrder.orderPlacedAt = dt.toISOString();
     console.log(newOrder.orderPlacedAt);
@@ -63,5 +72,6 @@ router.post('/addOrder', (req, res, next) => {
         }
     });
 });
+
 
 module.exports = router;

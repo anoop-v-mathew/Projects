@@ -8,6 +8,15 @@ const config = require('./config/database');
 const ejs = require('ejs');
 const paypal = require('paypal-rest-sdk');
 
+//for gridfs file upload
+
+const crypto = require('crypto');
+const multer = require('multer');
+const GridFsStorage = require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
+const methodOverride = require('method-override')
+
+
 paypal.configure({
     'mode': 'sandbox', //
     'client_id': 'AXw3uxWPTBb-KjHTB56GXgwfrMK5et1RrrbVvJwCAIPd9ImxwDLm1lj8si6HnOFNHEdWQQSmAUAHCGcj',
@@ -55,6 +64,10 @@ app.use('/admin', admin);
 
 // Order routes
 app.use('/order', orders);
+
+//File upload
+app.use(methodOverride('_method'));
+
 
 app.post('/pay', (req, res)=> {
     const create_payment_json = {

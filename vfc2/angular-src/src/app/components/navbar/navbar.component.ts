@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+//import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
 import {CookieService} from 'ngx-cookie-service';
 import { logging } from 'selenium-webdriver';
+
+import { AuthService } from "angular4-social-login";
 
 @Component({
   selector: 'app-navbar',
@@ -41,6 +43,7 @@ export class NavbarComponent implements OnInit {
     console.log('loggingout');
     this._cookieService.deleteAll();
     this.loginStatus = false;
+    this._AuthService.signOut();
 
   }
 

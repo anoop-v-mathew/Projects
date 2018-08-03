@@ -50,6 +50,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { SocialpluginComponent } from './components/login/socialplugin/socialplugin.component';
 import { ShoppingCartComponent } from './components/customer/shopping-cart/shopping-cart.component';
 import { PaymentComponent } from './components/customer/payment/payment.component';
+import { CheckOutComponent } from './components/customer/check-out/check-out.component';
 //import { CheckOutComponent } from './components/customer/check-out/check-out.component';
 
 
@@ -91,6 +92,7 @@ const appRoutes: Routes = [
   { path: 'cumenu/:email', component: CustomerMenuComponent },
   { path: 'customer', component: CuVendorListComponent },
   { path:'sCart', component:ShoppingCartComponent},
+  { path:'Checkout/:sku', component:CheckOutComponent},
   { path:'Pay', component:PaymentComponent}
 ];
 
@@ -125,6 +127,7 @@ export const routing = RouterModule.forRoot(appRoutes);
     SocialpluginComponent,
     ShoppingCartComponent,
     PaymentComponent,
+    CheckOutComponent,
     
     
   ],

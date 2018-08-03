@@ -35,7 +35,7 @@ const ItemsSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  type:{
+  itemtype:{
     type: String,
     required: true
   }

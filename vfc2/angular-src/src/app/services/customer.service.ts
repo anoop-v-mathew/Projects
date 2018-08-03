@@ -52,4 +52,13 @@ export class CustomerService {
     return this._http.get('http://localhost:3000/order/getOrders/' + email)
     .map(res => res.json());
   }
+
+  getCheckoutOrder(sku): any{
+    let headers = new Headers();
+    return this._http.get('http://localhost:3000/order/getCheckoutOrders/' + sku)
+    .map(res => res.json());
+  }
 }
+
+
+//getCheckoutOrders

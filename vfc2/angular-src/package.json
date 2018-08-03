@@ -31,6 +31,7 @@
     "hammerjs": "^2.0.8",
     "ngx-cookie-service": "^1.0.10",
     "passport-facebook": "^2.1.1",
+    "randomstring": "^1.1.5",
     "rxjs": "^6.1.0",
     "rxjs-compat": "^6.1.0",
     "zone.js": "^0.8.26"

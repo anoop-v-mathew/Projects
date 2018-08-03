@@ -8,6 +8,8 @@ import { forEach } from '@angular/router/src/utils/collection';
 import { Location, DatePipe } from "@angular/common";
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
+//var randomize = require("randomatic");
+
 @Component({
   selector: 'app-customer-menu',
   templateUrl: './customer-menu.component.html',
@@ -45,11 +47,13 @@ export class CustomerMenuComponent implements OnInit {
   AddtoCart(menuname,itemsname , price, currency, preparation_time, quantity){
     console.log(' '+ 'MenuName' + menuname + ' '+ 'ItemsName:'+ itemsname + ' '+ Date.now());
 
-
+    
     const order = {
-      itemname: itemsname,
-      itemValue: price,
-      itemCurrency: currency,
+      name: itemsname,
+      //sku: randomstring.generate(7),
+      price: price,
+      currency: currency,
+      quantity: quantity,
       itemPreparationTime: preparation_time
     };
 
@@ -58,11 +62,7 @@ export class CustomerMenuComponent implements OnInit {
       orderForVendor: this.Email,
       //orderPlacedAt: Date(),
       orderStatus: 'Open',
-      itemName: itemsname,
-      itemValue: price,
-      itemCurrency: currency,
-      itemQuantity: quantity,
-      itemPreparationTime: preparation_time 
+      OrderedList: order
         
     };
     this._CustomerService.AddOrder(Finalorder)

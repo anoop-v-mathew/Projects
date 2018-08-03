@@ -1,52 +1,55 @@
-<div class="row">
-    <div class="col-md-12 " style="background-color:lightblue">Your Shopping Basket</div>
-    
+<h1>
+  Shopping Cart
+</h1>
+<div *ngFor='let order of Orders'>
+    {{order.orderForVendor}}
+  <table>
+    <tr>
+        <th>
+            ItemName:
+          </th>
+          <th>
+            Price:
+          </th>
+          <th>
+            Quantity:
+          </th>
+          <!-- <th>
+            Total
+          </th>
+          <th>
+            Checkout:
+          </th> -->
+    </tr>
+    <tr *ngFor='let orderlist of order.OrderedList'>
+      <td>
+        {{orderlist.name}}
+      </td>
+      <td>
+        {{orderlist.price}}/{{orderlist.currency}}
+      </td>
+      <td>
+        {{orderlist.quantity}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{Total}}
+      </td>
+      <td>
+          
+             
+            
+ [routerLink]="['/UpdateVendor',Vendor.ID]"
+      </td>
+    </tr>
+  </table>
+
+  <div>
+    <a class="success button large expanded"
+    [attr.disabled]="itemCount === 0 ? true : null"
+    [routerLink]="['/Checkout', order.sku]">Proceed To Checkout</a>
+  </div>
 </div>
-<div class="row">
-    <div class="col-md-4" style="background-color:lightblue">Check out fast, i feel your hungry</div>
-</div>
-<div>
-    <div class="container">
-        <div class="row" *ngFor='let order of Orders'>
-      
-          <div class="col">
-            {{order.orderForVendor}}
-          </div>
-      
-          <div class="col" >
-            {{order.order.itemName}}
-          </div>
-      
-          <div class="col">
-            {{order.order.itemValue}}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-
-          </div>
-          <div class="col">
-            <strong>Total</strong>
-          </div>
-          <div class="col">
-            {{Total}}
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-
-          </div>
-            <div class="small-12 columns">
-              <a class="success button large expanded"
-                 [attr.disabled]="itemCount === 0 ? true : null"
-                 routerLink="/checkout">Proceed To Checkout</a>
-            </div>
-            <div class="col">
-              
-            </div>
-      </div>
-</div>
-
 
 

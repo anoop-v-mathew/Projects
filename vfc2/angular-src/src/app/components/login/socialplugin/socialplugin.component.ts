@@ -35,7 +35,11 @@ export class SocialpluginComponent implements OnInit {
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
     this.authService.authState.subscribe((user) => {
+      this._cookieService.set('LoginStatus', 'Logedin');
       this.user = user;
+      //this.user.id = '100001785740305';
+      var email = this.user.firstName;
+      console.log('Email:'+ email);
       this.loggedIn = (user != null);
       this._cookieService.set('username', this.user.email );
       this.router.navigate(['customer']);
