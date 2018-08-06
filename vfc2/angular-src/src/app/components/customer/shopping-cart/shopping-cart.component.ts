@@ -29,14 +29,20 @@ export class ShoppingCartComponent implements OnInit {
     this._CustomerService.getOrder(this.CustomerEmail)
     .subscribe(order => {
       this.Orders = order;
-      console.log('Vendor:' +JSON.stringify(this.Orders));
+      console.log('Oders:' +JSON.stringify(this.Orders));
 
-      var len = order.length;
-      console.log('Length:' + len);
-      for(var i = 0; i < len; i++){
-        this.Total = this.Total + order[i].OrderedList.itemValue;
-      }
-      console.log('Total:'+ this.Total);
+      // var len = order.length;
+      // console.log('Length:' + len);
+      // for(var i = 0; i < len; i++){
+      //   const oderItemsLen = order[i].orderedItems.length;
+      //   console.log('price' + oderItemsLen);
+      //   for(var j = 0; j < oderItemsLen; j++){
+
+      //     this.Total = this.Total + order[i].orderedItems[j].itemPrice;
+      //   }
+        
+      // }
+      
     });
 
     

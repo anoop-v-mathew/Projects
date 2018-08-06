@@ -38,10 +38,8 @@
                 <td>
                     <label>Upload Item image</label>
                 </td>
-                <td class="custom-file mb-3">
-                        <input type="file" name="file" id="file" 
-                        class="custom-file-input">
-                        <label for="file" class="custom-file-label">Choose file</label>
+                <td >
+                    <input type="file" name="file" id="file" class="form-control" [(ngModel)]= "file" #fileRef="ngModel">
                 </td>
               </tr>
         <tr>                            

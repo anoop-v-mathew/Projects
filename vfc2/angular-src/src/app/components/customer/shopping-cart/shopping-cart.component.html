@@ -1,55 +1,36 @@
-<h1>
-  Shopping Cart
-</h1>
-<div *ngFor='let order of Orders'>
-    {{order.orderForVendor}}
-  <table>
-    <tr>
-        <th>
-            ItemName:
-          </th>
-          <th>
-            Price:
-          </th>
-          <th>
-            Quantity:
-          </th>
-          <!-- <th>
-            Total
-          </th>
-          <th>
-            Checkout:
-          </th> -->
-    </tr>
-    <tr *ngFor='let orderlist of order.OrderedList'>
-      <td>
-        {{orderlist.name}}
-      </td>
-      <td>
-        {{orderlist.price}}/{{orderlist.currency}}
-      </td>
-      <td>
-        {{orderlist.quantity}}
-      </td>
-    </tr>
-    <tr>
-      <td>
-        {{Total}}
-      </td>
-      <td>
-          
-             
-            
- [routerLink]="['/UpdateVendor',Vendor.ID]"
-      </td>
-    </tr>
-  </table>
+Shopping Cart
 
-  <div>
-    <a class="success button large expanded"
-    [attr.disabled]="itemCount === 0 ? true : null"
-    [routerLink]="['/Checkout', order.sku]">Proceed To Checkout</a>
+<div class="container" *ngFor='let orders of Orders'>
+
+  {{orders.vendorEmail}}
+    <!--Table-->
+<table class="table">
+
+    <!--Table head-->
+    <thead class="mdb-color darken-3">
+        <tr class="text-white">
+            <th>Food Item</th>
+            <th>Price:</th>
+            <th>Quantity</th>
+            <th>currency</th>
+            <th>Prepration Time</th>
+        </tr>
+    </thead>
+    <!--Table head-->
+
+    <!--Table body-->
+    <tbody>
+        <tr *ngFor='let order of orders.orderedItems'>
+            <td>{{order.itemName}}</td>
+            <td>{{order.itemPrice}}</td>
+            <td>{{order.quantity}}</td>
+            <td>{{order.currency}}</td>
+            <td>{{order.itemPrepTime}}</td>
+        </tr>
+    </tbody>
+    <!--Table body-->
+</table>
+<button type="button" [routerLink]="['Checkout/', orders.sku]" gradient="aqua" rounded="true" class="waves-light">GO to Cart</button>
+<!--Table-->
   </div>
-</div>
-
 

@@ -8,7 +8,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 @Component({
   selector: 'app-check-out',
   templateUrl: './check-out.component.html',
-  styleUrls: ['./check-out.component.css']
+  styleUrls: ['./check-out.component.scss']
 })
 export class CheckOutComponent implements OnInit {
   Orders: any[];
@@ -16,6 +16,7 @@ export class CheckOutComponent implements OnInit {
   Total: any;
   sku: any;
   checkoutorder: any[];
+  cost: any;
   constructor(
     private _CustomerService: CustomerService,
     private _cookieService:CookieService,
@@ -38,9 +39,15 @@ export class CheckOutComponent implements OnInit {
       console.log('CheckoutOrder:' +JSON.stringify(this.Orders));
 
       var len = order.length;
-      //console.log('Length:' + len);
+      console.log('Length:' + len);
       for(var i = 0; i < len; i++){
-        this.Total = this.Total + order[i].OrderedList.itemValue;
+        const OrderLen = order[i].orderedItems.length;
+        for(var j=0; j< OrderLen; j++){
+          this.cost = order[i].orderedItems[j].itemPrice * order[i].orderedItems[j].quantity;
+          this.Total = this.Total + this.cost;
+        }
+        this.cost = 0;
+        //this.Total = this.Total + order[i].OrderedList.itemValue;
       }
 
       console.log('Total:'+ this.Total);
