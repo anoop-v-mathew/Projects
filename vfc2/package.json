@@ -7,12 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "angular-bootstrap-md": "^6.1.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "*",
     "cors": "*",
     "express": "*",
     "jsonwebtoken": "*",
     "mongoose": "*",
+    "ngx-cookie-service": "^1.0.10",
     "passport": "*",
     "passport-jwt": "*"
   },
