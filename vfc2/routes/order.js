@@ -47,7 +47,7 @@ router.post('/pay', (req, res)=> {
 // Get Orders
 router.get('/getOrders/:email', (req, res, next) => {
     console.log("In /order/getOrders");
-    Order.getOpenCustomerOrders(req.params.email, (err, orders) => {
+    Order.getCustomerOrders(req.params.email, (err, orders) => {
         if (err) throw err;
         console.log(orders.length);
         if (!orders || orders.length == 0) {
@@ -57,6 +57,18 @@ router.get('/getOrders/:email', (req, res, next) => {
         //     vendors[x].charges = undefined;
         //     vendors[x].categories = undefined;
         // }    
+        return res.json(orders);
+    });
+});
+
+router.get('/getOpenOrders/:email', (req, res, next) => {
+    console.log("In /order/getOpenOrders");
+    Order.getCustomerOpenOrders(req.params.email, (err, orders) => {
+        if (err) throw err;
+        console.log(orders.length);
+        if (!orders || orders.length == 0) {
+            return res.json({success: false, msg: 'Orders not found'});
+        }  
         return res.json(orders);
     });
 });
@@ -106,6 +118,24 @@ router.post('/addOrder', (req, res, next) => {
     });
 });
 
+router.post('/submitOrder/:sku',(req, res, next) =>{
+    console.log("In /order/submitOrder");
+    var sku = req.params.sku;
+    //let order = new Order;
+    var orderStatus = 'Submitted';
 
+       //console.log('Menu: ' +JSON.stringify(Menu.categories));
+
+    Order.UpdateStatus(req.params.sku, orderStatus ,(err, order)=>{
+        if(err){
+            res.json({success: false, msg: 'Failed to Add Menu. Error: ' + err});
+          }
+          else{
+            res.json({success: true, msg: 'Add Menu Succefully: '});
+          }
+
+    })
+
+} )
 
 module.exports = router;

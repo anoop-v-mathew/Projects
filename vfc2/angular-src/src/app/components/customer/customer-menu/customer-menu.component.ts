@@ -43,7 +43,7 @@ export class CustomerMenuComponent implements OnInit {
     .subscribe(vendor => {
       this.Vendor = vendor;
       console.log('Vendor:' +JSON.stringify(this.Vendor));
-    })
+    });
 
     //console.log('VendorName:' + this.Vendor.VendorName)
   }

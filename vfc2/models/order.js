@@ -56,9 +56,14 @@ const OrderSchema = mongoose.Schema({
 
 const Order = module.exports = mongoose.model('Order', OrderSchema);
 
-module.exports.getOpenCustomerOrders = function(email, callback) {
+module.exports.getCustomerOpenOrders = function(email, callback) {
   console.log(email);
   Order.find({ "custEmail" : email, "orderStatus" : "Open" }, callback);
+}
+
+module.exports.getCustomerOrders = function(email, callback) {
+  console.log(email);
+  Order.find({ "custEmail" : email}, callback);
 }
 
 module.exports.getCheckoutOrder = function(sku, callback) {
@@ -67,9 +72,23 @@ module.exports.getCheckoutOrder = function(sku, callback) {
   Order.find({"sku": sku}, callback);
 }
 
+module.exports.getVendorOrders= function(email, orderStatus, callback) {
+  console.log(email);
+  Order.find({ "custEmail" : email, "orderStatus" : 'Submitted' }, callback);
+}
+
 module.exports.addOrder = function(newOrder, callback) {
   //console.log('Vendor' +JSON.stringify( newVendor));
   //newOrder.orderStatus = "Open";
   newOrder.save(callback);
 }
 
+module.exports.UpdateStatus = function(sku, orderStatus, callback){
+console.log('I am inside UdateStatus')
+  const query = {"sku": sku};
+  const Staus = orderStatus;
+  
+
+  Order.update(
+    query, { $set: { "orderStatus": Staus } }, callback);
+}

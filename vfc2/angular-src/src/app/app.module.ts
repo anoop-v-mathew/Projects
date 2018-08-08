@@ -54,6 +54,8 @@ import { CheckOutComponent } from './components/customer/check-out/check-out.com
 //import { CheckOutComponent } from './components/customer/check-out/check-out.component';
 
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
+import { OrderHistoryComponent } from './components/customer/order-history/order-history.component';
+import { PlacedOrdersComponent } from './components/vendor/placed-orders/placed-orders.component';
 
 let config = new AuthServiceConfig([
   // {
@@ -91,8 +93,10 @@ const appRoutes: Routes = [
   { path: 'cumenu/:email', component: CustomerMenuComponent },
   { path: 'customer', component: CuVendorListComponent },
   { path:'sCart', component:ShoppingCartComponent},
-  { path:'sCart/Checkout/:sku', component:CheckOutComponent},
-  { path:'Pay', component:PaymentComponent}
+  { path:'Checkout/:sku', component:CheckOutComponent},
+  { path:'Pay/:sku', component:PaymentComponent},
+  { path:'Ohistory', component:OrderHistoryComponent}
+
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);
@@ -127,7 +131,9 @@ export const routing = RouterModule.forRoot(appRoutes);
     ShoppingCartComponent,
     PaymentComponent,
     CheckOutComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    OrderHistoryComponent,
+    PlacedOrdersComponent
     
   ],
   imports: [

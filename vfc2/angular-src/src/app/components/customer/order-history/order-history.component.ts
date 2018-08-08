@@ -7,11 +7,12 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
 @Component({
-  selector: 'app-shopping-cart',
-  templateUrl: './shopping-cart.component.html',
-  styleUrls: ['./shopping-cart.component.scss']
+  selector: 'app-order-history',
+  templateUrl: './order-history.component.html',
+  styleUrls: ['./order-history.component.scss']
 })
-export class ShoppingCartComponent implements OnInit {
+export class OrderHistoryComponent implements OnInit {
+
   Orders: any[];
   CustomerEmail: any;
   Total: any;
@@ -22,18 +23,16 @@ export class ShoppingCartComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) { }
-  
+
   ngOnInit() {
     this.Total = 0;
     this.CustomerEmail = this._cookieService.get("username");
-    this._CustomerService.getOpenOrder(this.CustomerEmail)
+    this._CustomerService.getOrder(this.CustomerEmail)
     .subscribe(order => {
       this.Orders = order;
       console.log('Oders:' +JSON.stringify(this.Orders));
       
     });
-
-    
   }
 
 }
