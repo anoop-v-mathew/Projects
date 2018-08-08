@@ -5,23 +5,21 @@
 <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
 
 <div class="container">
-  <div class="row">
-    <h1 class="title">
-      {{Vendor.VendorName}}
-      <br>
-      <small></small>      
-    </h1>
-    <div class="col-sm-10 col-sm-offset-1" *ngFor='let menu of Vendor.categories'>
+  <h1 class="title">
+    {{Vendor.VendorName}}   
+  </h1>
+  <br>
+    <div *ngFor='let menu of Vendor.categories'>
       <h2 class="section-heading h2 pt-4">{{menu.name}}</h2>
-      <div class="col-md-4 col-sm-6">
-        <div class="card-container" *ngFor='let items of menu.items'>
+      <div class="row">
+        <div class="card-container col-lg-3 col-md-6 align-items-stretch" *ngFor='let items of menu.items'>
           <div class="card">
             <div class="front">
               <div class="cover">
-                <img src="http://www.rwnewyork.com/images/2017/05/11/resorts-world-food-court.jpg" />
+                <img src="https://blog.travelkhana.com/food/wp-content/uploads/sites/5/2017/05/south-indian-14.jpg" />
               </div>
               <div class="user">
-                <img class="img-circle" src="https://scm-assets.constant.co/swm/9a888e72fca371869e751ab34491d024/35b8f5e5-f755-40a4-a90b-722d9a9ccfbb.jpg" />
+                <img class="img-circle" src="https://image.delfoo.com/data/cuisine/south_indian.jpg" />
               </div>
               <div class="content">
                 <div class="main">
@@ -31,17 +29,14 @@
                   <i class="fa fa-mail-forward"></i>
                 </div>
               </div>
-            </div>
-            <!--end of front panel-->
+            </div> <!--end of front panel-->
             <div class="back">
               <div class="header">
                 <h5 class="name">{{items.name}}</h5>
-              </div>
+              </div> <!-- header-->
               <div class="content">
                 <div class="main">
-
-
-                  <label class="text-center">Price:</label>
+                  <label class="text-center">Price: </label>
                   <label class="text-center">{{items.price}}</label>
                   <br>
                   <label class="text-center">Currency type: </label>
@@ -49,39 +44,25 @@
                   <br>
                   <label class="text-center">Prepration Time: </label>
                   <label class="text-center">{{items.preparation_time}} min</label>
-                </div>
-              </div>
+                </div> <!-- main -->
+              </div> <!-- content -->
               <div class="footer">
-                <!-- <div class="social-links text-center">
-                  <a href="http://creative-tim.com" class="facebook">
-                    <i class="fa fa-facebook fa-fw"></i>
-                  </a>
-                  <a href="http://creative-tim.com" class="google">
-                    <i class="fa fa-google-plus fa-fw"></i>
-                  </a>
-                  <a href="http://creative-tim.com" class="twitter">
-                    <i class="fa fa-twitter fa-fw"></i>
-                  </a>
-                </div> -->
                 <span class="left">
-                    <a [routerLink]="['/UpdateItem',menu.name,items.name]">
-                      <button type="button" class="btn btn-warning waves-light" mdbRippleRadius>Edit</button>
-                    </a>
-                  </span>
-                
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- add new item -->
-
+                  <a [routerLink]="['/UpdateItem',menu.name,items.name]">
+                    <button type="button" class="btn btn-warning waves-light" mdbRippleRadius>Edit</button>
+                  </a>
+                </span>
+              </div> <!-- footer-->
+            </div> <!-- card back -->
+          </div> <!-- card -->
+        </div> <!-- items -->
+      </div> <!-- row -->
       <a [routerLink]="['/AddItem',menu.name]">
-        <button type="button" class="btn btn-warning waves-light" mdbRippleRadius>Add {{menu.name}}</button>
+        <button type="button" class="btn btn-primary waves-light" mdbRippleRadius>Add New {{menu.name}} Item</button>
       </a>
-    </div>
+      <!-- add new item -->
+    </div> <!-- categories -->
     <a [routerLink]="['/AddCatog']">
-      <button type="button" class="btn btn-warning waves-light" mdbRippleRadius>Add new Catogory</button>
+      <button type="button" class="btn btn-secondary waves-light" mdbRippleRadius>Add New Category</button>
     </a>
-  </div>
 </div>

@@ -1,4 +1,5 @@
-<div class="container">
+<div *ngIf="Item && Item.name.length > 0" class="container">
+  <div class="container">
     <h1> Edit </h1>
     <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
       <table>
@@ -34,11 +35,12 @@
                     <input type="text" class="form-control" id="preparation_time" name="preparation_time" [(ngModel)]="Item.preparation_time" #preparationRef="ngModel">
                 </td>
               </tr>
-                      <tr>                            
+                      <tr>
           <td>
-              <button type="submit" class="button">Submit</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
           </td>
         </tr>
       </table>
     </form>
   </div>
+</div>

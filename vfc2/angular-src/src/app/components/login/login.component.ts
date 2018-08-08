@@ -8,7 +8,7 @@ import {CookieService} from 'ngx-cookie-service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
     private _cookieService:CookieService ) { }
 
   ngOnInit() { }
+
 
   onSubmit(formValue: any){
     // put it inside of onSubmit() method
@@ -35,13 +36,16 @@ export class LoginComponent implements OnInit {
       username: formValue.email,
       password: formValue.password
     }
+
+    
     //required fields
     this._AuthService.login(user).subscribe(data => {
       if(data.success){
-        
+        this._cookieService.set('LoginStatus', 'Logedin');
+        console.log('LoginStatus:' + this._cookieService.get('LoginStatus'));
         var user = data.user;
         this.Email = user.email;
-        console.log('user_me:' +this.Email);
+        //console.log('user_email:' +this.Email);
 
         this._cookieService.set('username', this.Email );
         var Username = this._cookieService.get('username');
@@ -51,9 +55,13 @@ export class LoginComponent implements OnInit {
           console.log(data.usertype[i]);
           if(data.usertype[i] == 'admin'){
             target = 'admin';
+            console.log('target:' + target);
+            
           }
           if(data.usertype[i] == 'vendor'){
-            target = 'vendor';
+            target = 'vendor';            
+            console.log('target:' + target);
+            
           }
         }
       } else {
@@ -61,6 +69,7 @@ export class LoginComponent implements OnInit {
         cssCls = 'alert-danger';
         target = 'Login';;
       }
+      console.log(flashMsg + " : " + target + " : " + this.Email);
       flashMessagesService.show(flashMsg, { cssClass: cssCls, timeout: 3000 });
       rt.navigate([target]);
     });

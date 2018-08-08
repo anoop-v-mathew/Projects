@@ -1,0 +1,55 @@
+<h1>
+  Shopping Cart
+</h1>
+<div *ngFor='let order of Orders'>
+    {{order.orderForVendor}}
+  <table>
+    <tr>
+        <th>
+            ItemName:
+          </th>
+          <th>
+            Price:
+          </th>
+          <th>
+            Quantity:
+          </th>
+          <!-- <th>
+            Total
+          </th>
+          <th>
+            Checkout:
+          </th> -->
+    </tr>
+    <tr *ngFor='let orderlist of order.OrderedList'>
+      <td>
+        {{orderlist.name}}
+      </td>
+      <td>
+        {{orderlist.price}}/{{orderlist.currency}}
+      </td>
+      <td>
+        {{orderlist.quantity}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{Total}}
+      </td>
+      <td>
+          
+             
+            
+ [routerLink]="['/UpdateVendor',Vendor.ID]"
+      </td>
+    </tr>
+  </table>
+
+  <div>
+    <a class="success button large expanded"
+    [attr.disabled]="itemCount === 0 ? true : null"
+    [routerLink]="['/Checkout', order.sku]">Proceed To Checkout</a>
+  </div>
+</div>
+
+

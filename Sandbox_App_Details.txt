@@ -1,0 +1,8 @@
+SandBoxID:
+bhargavi.mc1-facilitator@wipro.com
+
+Client ID:
+AXw3uxWPTBb-KjHTB56GXgwfrMK5et1RrrbVvJwCAIPd9ImxwDLm1lj8si6HnOFNHEdWQQSmAUAHCGcj
+
+Secret:
+EGgE0KzsCScMXTapD5Ie4j7joctcplbJOhABSRkQdK7r4dLe0XB1Ys0VtDgccXliaz0rTPkMsWaBuiss

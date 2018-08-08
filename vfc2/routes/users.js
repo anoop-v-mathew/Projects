@@ -99,10 +99,28 @@ router.post('/authenticateUser', (req, res, next) => {
   });
 });
 
+router.get('/getUser/:email', (req, res, next) => {
+  console.log("In /user/getUser");
+  var username = req.params.email;
+
+  User.getUserByEmail(username, (err, user) =>  {
+
+      if (err) throw err;
+      if (!vendor) {
+          return res.json({success: false, msg: 'User not found'});
+      }
+      return res.json(user);
+  });
+});
+
+
 // user profile (/users/profile)
 router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
   res.json({user: req.user});
 });
+
+//to get type of user
+
 
 
 module.exports = router;

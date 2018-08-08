@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="Vendor && Vendor.VendorName.length > 0" class="container">
   <h1> Edit Vendor </h1>
   <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
     <table>
