@@ -93,9 +93,10 @@ const appRoutes: Routes = [
   { path: 'cumenu/:email', component: CustomerMenuComponent },
   { path: 'customer', component: CuVendorListComponent },
   { path:'sCart', component:ShoppingCartComponent},
-  { path:'Checkout/:sku', component:CheckOutComponent},
+  { path:'sCart/Checkout/:sku', component:CheckOutComponent},
   { path:'Pay/:sku', component:PaymentComponent},
-  { path:'Ohistory', component:OrderHistoryComponent}
+  { path:'Ohistory', component:OrderHistoryComponent},
+  { path:'PlaceOrder', component:PlacedOrdersComponent}
 
 ];
 

@@ -12,9 +12,13 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class PlacedOrdersComponent implements OnInit {
 
-  Orders: any[];
+  SubmittedOrders: any[];
+  AcceptedOrders: any[];
+  PreparingOrders: any[];
+  ReadyOrders: any[];
   CustomerEmail: any;
   Total: any;
+  
   
   constructor(
     private _CustomerService: CustomerService,
@@ -26,13 +30,42 @@ export class PlacedOrdersComponent implements OnInit {
   ngOnInit() {
     this.Total = 0;
     this.CustomerEmail = this._cookieService.get("username");
-    this._CustomerService.getOrder(this.CustomerEmail)
+    
+    this._CustomerService.getOrderWithStatus(this.CustomerEmail, 'Submitted')
     .subscribe(order => {
-      this.Orders = order;
-      console.log('Oders:' +JSON.stringify(this.Orders));
+      this.SubmittedOrders = order;
+      //console.log('Oders:' +JSON.stringify(this.SubmittedOrders));
       
     });
+
+    //this.CustomerEmail = this._cookieService.get("username");
     
+    this._CustomerService.getOrderWithStatus(this.CustomerEmail,  'Accepted')
+    .subscribe(order => {
+      this.AcceptedOrders = order;
+      //console.log('Oders:' +JSON.stringify(this.SubmittedOrders));
+      
+    });
+
+    
+
+    
+    this._CustomerService.getOrderWithStatus(this.CustomerEmail, 'Preparing')
+    .subscribe(order => {
+      this.PreparingOrders = order;
+      //console.log('Oders:' +JSON.stringify(this.SubmittedOrders));
+      
+    });
+
+    
+    
+    this._CustomerService.getOrderWithStatus(this.CustomerEmail, 'Ready')
+    .subscribe(order => {
+      this.ReadyOrders = order;
+      //console.log('Oders:' +JSON.stringify(this.SubmittedOrders));
+      
+    });
+
   }
 
 

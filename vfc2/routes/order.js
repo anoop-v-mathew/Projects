@@ -61,6 +61,24 @@ router.get('/getOrders/:email', (req, res, next) => {
     });
 });
 
+router.get('/getOpenOrders/:email/:status', (req, res, next) => {
+    console.log("In /order/getOpenOrders");
+    console.log(req.params.email);
+    console.log(req.params.status);
+    Order.getVendorOrders(req.params.email, req.params.status, (err, orders) => {
+        if (err) throw err;
+        //console.log(orders.length);
+        if (!orders || orders.length == 0) {
+            return res.json({success: false, msg: 'Orders not found'});
+        }
+        // for (let x=0; x < vendors.length; x++) {
+        //     vendors[x].charges = undefined;
+        //     vendors[x].categories = undefined;
+        // }    
+        return res.json(orders);
+    });
+});
+
 router.get('/getOpenOrders/:email', (req, res, next) => {
     console.log("In /order/getOpenOrders");
     Order.getCustomerOpenOrders(req.params.email, (err, orders) => {

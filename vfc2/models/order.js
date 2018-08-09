@@ -74,7 +74,9 @@ module.exports.getCheckoutOrder = function(sku, callback) {
 
 module.exports.getVendorOrders= function(email, orderStatus, callback) {
   console.log(email);
-  Order.find({ "custEmail" : email, "orderStatus" : 'Submitted' }, callback);
+  console.log(orderStatus);
+
+  Order.find({ "vendorEmail" : email, "orderStatus" : orderStatus }, callback);
 }
 
 module.exports.addOrder = function(newOrder, callback) {

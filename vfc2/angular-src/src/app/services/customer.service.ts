@@ -59,6 +59,12 @@ export class CustomerService {
     .map(res => res.json());
   }
 
+  getOrderWithStatus(email, status): any{
+    let headers = new Headers();
+    return this._http.get('http://localhost:3000/order/getOpenOrders/' + email + '/'+ status)
+    .map(res => res.json());
+  }
+
   getCheckoutOrder(sku): any{
     let headers = new Headers();
     return this._http.get('http://localhost:3000/order/getCheckoutOrders/' + sku)
