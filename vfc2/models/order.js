@@ -2,35 +2,41 @@ const mongoose = require('mongoose');
 const config = require('../config/database'); 
 
 // Order schema
-const FoodItem = mongoose.Schema({
-  name: {
-    type: String,
-    required: true      
-  },
-  price: {
-    type: Number,
-    required: true
-  },
-  currency: {
-    type: String,
-    required: true      
-  },
-  quantity:{
-    type: String,
-    required: true 
-  },
-  itemPreparationTime: {
-    type: String,
-    required: true
-  }
-});
+
 const OrderSchema = mongoose.Schema({
-  OrderedList: [FoodItem],
-  customerEmail: {
+  orderedItems: [
+    {
+      itemName:{
+        type: String,
+        required: true
+      },
+      itemPrice:{
+        type: Number,
+        required: true
+      },
+      quantity:{
+        type: Number,
+        required: true
+      },
+      currency:{
+        type: String,
+        required: true
+      },
+      itemPrepTime:{
+        type: String,
+        required: true
+      }
+    }
+  ],
+  custEmail: {
     type: String,
     required: true
   },
-  orderForVendor: {
+  vendorEmail: {
+    type: String,
+    required: true
+  },
+  vendorName: {
     type: String,
     required: true
   },
@@ -42,41 +48,49 @@ const OrderSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  sku:{
+  sku:{ 
     type: String,
     required:true
-  },
+  }
 });
 
 const Order = module.exports = mongoose.model('Order', OrderSchema);
 
-module.exports.getOpenCustomerOrders = function(email, callback) {
+module.exports.getCustomerOpenOrders = function(email, callback) {
   console.log(email);
-  Order.find({ "customerEmail" : email, "orderStatus" : "Open" }, callback);
+  Order.find({ "custEmail" : email, "orderStatus" : "Open" }, callback);
+}
+
+module.exports.getCustomerOrders = function(email, callback) {
+  console.log(email);
+  Order.find({ "custEmail" : email}, callback);
 }
 
 module.exports.getCheckoutOrder = function(sku, callback) {
-  console.log(email);
+  console.log("In M/order/getcheckoutOrders");
+  console.log(sku);
   Order.find({"sku": sku}, callback);
+}
+
+module.exports.getVendorOrders= function(email, orderStatus, callback) {
+  console.log(email);
+  console.log(orderStatus);
+
+  Order.find({ "vendorEmail" : email, "orderStatus" : orderStatus }, callback);
 }
 
 module.exports.addOrder = function(newOrder, callback) {
   //console.log('Vendor' +JSON.stringify( newVendor));
-  newOrder.orderStatus = "Open";
+  //newOrder.orderStatus = "Open";
   newOrder.save(callback);
 }
 
-module.exports.addorderitems = function(email, newOrderItem, callback){
+module.exports.UpdateStatus = function(sku, orderStatus, callback){
+console.log('I am inside UdateStatus')
+  const query = {"sku": sku};
+  const Staus = orderStatus;
   
 
-  console.log('email:'+ email + ' category:' + JSON.stringify(category.items[0]));
-  const query = {"VendorEmail": email, "categories.name": category.name};
-  console.log('Qry : ' + JSON.stringify(query));
-  Vendor.update(
-    query,
-    { $push: {
-      "categories.$.items": category.items[0]
-    }
-  }, callback);
+  Order.update(
+    query, { $set: { "orderStatus": Staus } }, callback);
 }
-

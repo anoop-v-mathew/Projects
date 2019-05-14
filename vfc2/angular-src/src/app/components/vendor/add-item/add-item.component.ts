@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import{VendorService} from '../../../services/vendor.service';
+import{FileUploadService}from '../../../services/file-upload.service';
 import {CookieService} from 'ngx-cookie-service';
 import { forEach } from '@angular/router/src/utils/collection';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { FileUploader } from 'ng2-file-upload';
+
 
 @Component({
   selector: 'app-add-item',
@@ -11,10 +14,19 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class AddItemComponent implements OnInit {
 
-  constructor(private _VendorService: VendorService, private route: ActivatedRoute, private router: Router, private _cookieService:CookieService) { }
+  constructor(private _VendorService: VendorService,
+     private route: ActivatedRoute,
+      private router: Router,
+       private _cookieService:CookieService,
+      private _FileServie: FileUploadService
+      ) { }
     MenuID: any;
     Email: any;
     name: any;
+
+  //   private files = [];
+  // private url = 'http://localhost:3000/FileStorage/upload';
+  // private uploader: FileUploader;
     ngOnInit() {
       this.route.params.subscribe(params => {
         this.name = params['name'];
@@ -23,7 +35,7 @@ export class AddItemComponent implements OnInit {
     }
 
   onSubmit( formValue: any ) {
-
+    //this.uploader = new FileUploader({url: this.url});
     this.Email = this._cookieService.get("username");
     const newItem = {
       name: formValue.Name,
@@ -48,12 +60,21 @@ export class AddItemComponent implements OnInit {
       }
     })
 
-     this.router.navigate(['Menu'])
+     this.router.navigate(['Menu']);
 
-
+     this._FileServie.UploadFile(formValue.file)
+     .subscribe(data =>{
+       if(data.success){
+         console.log("Success");
+       }
+       else{
+         //console.log(fail);
+       }
+     })
+     //this.router.navigate(['Menu'])
      //this._AdminService.Additem(newItem, this.Email);
      //this._VendorService.AddItem(newItem, this.MenuID);
-     this.router.navigate(['Menu'])
+     
   }
 }
 // addMenuItem

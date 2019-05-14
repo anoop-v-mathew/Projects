@@ -46,7 +46,7 @@
                                   </span>
 
                                 <span class="float-right">
-                                    <a data-toggle="tooltip" data-placement="top" title="Add to Cart" (click)="AddtoCart(menu.name,items.name,items.price, items.currency, items.preparation_time, productQty.value)">
+                                    <a data-toggle="tooltip" data-placement="top" title="Add to Cart" (click)="AddtoOrder(menu.name,items.name,items.price, items.currency, items.preparation_time, productQty.value)">
                                       <i class="fa fa-shopping-cart grey-text ml-3"></i>
                                     </a>
                                     <a data-toggle="tooltip" data-placement="top" title="Share">
@@ -63,4 +63,6 @@
                 </div>
             </div>
         </section>
+
+        <button type="button" (click)="AddtoCart(Vendor.VendorName)" gradient="aqua" rounded="true" class="waves-light">GO to Cart</button>
       </div>

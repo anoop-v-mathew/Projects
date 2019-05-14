@@ -53,12 +53,33 @@ export class CustomerService {
     .map(res => res.json());
   }
 
+  getOpenOrder(email): any{
+    let headers = new Headers();
+    return this._http.get('http://localhost:3000/order/getOpenOrders/' + email)
+    .map(res => res.json());
+  }
+
+  getOrderWithStatus(email, status): any{
+    let headers = new Headers();
+    return this._http.get('http://localhost:3000/order/getOpenOrders/' + email + '/'+ status)
+    .map(res => res.json());
+  }
+
   getCheckoutOrder(sku): any{
     let headers = new Headers();
     return this._http.get('http://localhost:3000/order/getCheckoutOrders/' + sku)
     .map(res => res.json());
   }
+
+  updateStatToSubmit(sku){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this._http.post('http://localhost:3000/order/submitOrder/'+ sku,{headers: headers})
+    .map(res => res.json());
+  }
 }
 
 
+
 //getCheckoutOrders
+

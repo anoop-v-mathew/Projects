@@ -1,1 +1,45 @@
-Chekout
+
+<h1>Checkout</h1>
+<div class="container" *ngFor='let orders of Orders'>
+
+    <h2>{{orders.vendorName}}</h2>
+  
+    <!--Table-->
+<table class="table">
+
+    <!--Table head-->
+    <thead class="mdb-color darken-3">
+        <tr class="text-white">
+            <th>Food Item</th>
+            <th>Price:</th>
+            <th>Quantity</th>
+            <th>currency</th>
+            <th>Prepration Time</th>
+        </tr>
+    </thead>
+    <!--Table head-->
+
+    <!--Table body-->
+    <tbody>
+        <tr *ngFor='let order of orders.orderedItems'>
+            <td>{{order.itemName}}</td>
+            <td>{{order.itemPrice}}</td>
+            <td>{{order.quantity}}</td>
+            <td>{{order.currency}}</td>
+            <td>{{order.itemPrepTime}}</td>
+        </tr>
+        <tr class="mdb-color darken-3">
+            <th class="text-white">Total</th>
+            <td class="text-white">{{Total}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            
+        </tr>
+    </tbody>
+    <!--Table body-->
+</table>
+<button type="button" gradient="aqua" rounded="true" class="waves-light" [routerLink]="['/Pay', orders.sku]">Pay</button>
+<!--Table-->
+  </div>
+
