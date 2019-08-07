@@ -1,68 +1,56 @@
 <div>
-        <h1 class="section-heading h1 pt-4">{{Vendor.VendorName}}</h1>
-        <section class="section pb-3" *ngFor='let menu of Vendor.categories'>
-            <h2 class="section-heading h2 pt-4">{{menu.name}}</h2>
-            <div class="row">
-                <div class="col-lg-4 col-md-12 mb-r" *ngFor='let items of menu.items'>
-                    <div class="card card-cascade wider">
-                        <div class="view overlay hm-white-slight">
-                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/img (55).jpg" class="img-fluid" alt="">
-                            <a>
-                                <div class="mask waves-effect waves-light" mdbRippleRadius></div>
-                            </a>
-                        </div>
-                        <div class="card-body text-center no-padding">
-                            <!--Category & Title-->
-                            <h4 class="card-title">
-                                <strong>
-                                    <a>{{items.name}}</a>
-                                </strong>
-                            </h4>
+    <h1 class="section-heading h1 pt-4">{{Vendor.VendorName}}</h1>
+    <section class="section pb-3" *ngFor='let menu of Vendor.categories'>
+        <h2 class="section-heading h2 pt-4">{{menu.name}}</h2>
+        <div class="row">
+            <div class="col-lg-4 col-md-12 mb-r" *ngFor='let items of menu.items'>
+                <div class="card card-cascade wider">
+                    <div class="view overlay hm-white-slight">
+                        <img src="https://cdn.vox-cdn.com/thumbor/zXCcamd4pwv0u1Tqt5uhaONy-KE=/0x134:960x854/1200x900/filters:focal(0x134:960x854)/cdn.vox-cdn.com/uploads/chorus_image/image/52883105/babu_ji.0.0.jpg"
+                            class="img-fluid" alt="">
+                        <a>
+                            <div class="mask waves-effect waves-light" mdbRippleRadius></div>
+                        </a>
+                    </div>
+                    <div class="card-body text-center no-padding">
+                        <!--Category & Title-->
+                        <h4 class="card-title">
+                            <strong>
+                                <a>{{items.name}}</a>
+                            </strong>
+                        </h4>
 
-                            <h5 class="card-title">
-                               
-                                    <a>{{items.price}}/{{items.currency}}</a>
-                            </h5>
-      
-                            <!--Description-->
-                            
-      
-                            <!--Card footer-->
-                            <div class="card-footer">
-                                <!-- <span>
-                                    <a placement="left" mdbTooltip="Add to Cart" (click)="AddtoCart(menu.name,items.name,items.price, items.currency, items.preparation_time)">
-                                        <i class="fa fa-shopping-cart"></i>
-                                    </a>
-                                    <a placement="top" mdbTooltip="Share">
-                                        <i class="fa fa-share-alt"></i>
-                                    </a>
-                                    <a placement="top" mdbTooltip="Add to Wishlist" container="body">
-                                        <i class="fa fa-heart"></i>
-                                    </a>
-                                </span> -->
+                        <h5 class="card-title">
 
-                                <span class="float-left font-weight-bold">
-                                    <label>Quantity:</label><input type="number" #productQty name="productQty" value="1" min="1" max="10" [(ngModel)]="Quantity">
-                                  </span>
+                            <a>{{items.price}}/{{items.currency}}</a>
+                        </h5>
 
-                                <span class="float-right">
-                                    <a data-toggle="tooltip" data-placement="top" title="Add to Cart" (click)="AddtoOrder(menu.name,items.name,items.price, items.currency, items.preparation_time, productQty.value)">
-                                      <i class="fa fa-shopping-cart grey-text ml-3"></i>
-                                    </a>
-                                    <a data-toggle="tooltip" data-placement="top" title="Share">
-                                      <i class="fa fa-share-alt grey-text ml-3"></i>
-                                    </a>
-                                    <a class="active" data-toggle="tooltip" data-placement="top" title="Added to Wishlist">
-                                      <i class="fa fa-heart ml-3"></i>
-                                    </a>
-                                  </span>
-                            </div>
-      
+                        <!--Description-->
+
+
+                        <!--Card footer-->
+                        <div class="card-footer">
+                            <span class="float-left font-weight-bold">
+                                <label>Quantity:</label>
+                                <input type="number" #productQty name="productQty" value="1" min="1" max="10" [(ngModel)]="Quantity">
+                            </span>
+
+                            <span class="float-right">
+                                <a data-toggle="tooltip" data-placement="top" title="Add to Cart" (click)="AddtoOrder(menu.name,items.name,items.price, items.currency, items.preparation_time, productQty.value)">
+                                    <i class="fa fa-shopping-cart grey-text ml-3"></i>
+                                </a>
+                                <a data-toggle="tooltip" data-placement="top" title="Share">
+                                    <i class="fa fa-share-alt grey-text ml-3"></i>
+                                </a>
+                                <a class="active" data-toggle="tooltip" data-placement="top" title="Added to Wishlist">
+                                    <i class="fa fa-heart ml-3"></i>
+                                </a>
+                            </span>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <button type="button" (click)="AddtoCart(Vendor.VendorName)" gradient="aqua" rounded="true" class="waves-light">GO to Cart</button>
-      </div>
+        </div>
+    </section>
+    <button type="button" (click)="AddtoCart(Vendor.VendorName)" gradient="aqua" rounded="true" class="waves-light">GO to Cart</button>
+</div>

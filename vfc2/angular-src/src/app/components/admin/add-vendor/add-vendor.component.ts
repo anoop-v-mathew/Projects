@@ -31,7 +31,7 @@ export class AddVendorComponent {
       VendorOwner: formValue.VendorOwner,
       VendorPassword: formValue.VendorPassword
     };
-    
+
     this._AdminService.AddVendor(newVendor).subscribe(data => {
       if (data.success) {
         console.log(data.msg);

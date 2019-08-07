@@ -6,63 +6,75 @@
 
 <div class="container">
   <h1 class="title">
-    {{Vendor.VendorName}}   
+    {{Vendor.VendorName}}
   </h1>
   <br>
-    <div *ngFor='let menu of Vendor.categories'>
-      <h2 class="section-heading h2 pt-4">{{menu.name}}</h2>
-      <div class="row">
-        <div class="card-container col-lg-3 col-md-6 align-items-stretch" *ngFor='let items of menu.items'>
-          <div class="card">
-            <div class="front">
-              <div class="cover">
-                <img src="https://blog.travelkhana.com/food/wp-content/uploads/sites/5/2017/05/south-indian-14.jpg" />
+  <div *ngFor='let menu of Vendor.categories'>
+    <h2 class="section-heading h2 pt-4">{{menu.name}}</h2>
+    <div class="row">
+      <div class="card-container col-lg-3 col-md-6 align-items-stretch" *ngFor='let items of menu.items'>
+        <div class="card">
+          <div class="front">
+            <div class="cover">
+              <img src="https://blog.travelkhana.com/food/wp-content/uploads/sites/5/2017/05/south-indian-14.jpg" />
+            </div>
+            <div class="user">
+              <img class="img-circle" src="https://image.delfoo.com/data/cuisine/south_indian.jpg" />
+            </div>
+            <div class="content">
+              <div class="main">
+                <h3 class="name">{{items.name}}</h3>
               </div>
-              <div class="user">
-                <img class="img-circle" src="https://image.delfoo.com/data/cuisine/south_indian.jpg" />
-              </div>
-              <div class="content">
-                <div class="main">
-                  <h3 class="name">{{items.name}}</h3>
-                </div>
-                <div class="footer">
-                  <i class="fa fa-mail-forward"></i>
-                </div>
-              </div>
-            </div> <!--end of front panel-->
-            <div class="back">
-              <div class="header">
-                <h5 class="name">{{items.name}}</h5>
-              </div> <!-- header-->
-              <div class="content">
-                <div class="main">
-                  <label class="text-center">Price: </label>
-                  <label class="text-center">{{items.price}}</label>
-                  <br>
-                  <label class="text-center">Currency type: </label>
-                  <label class="text-center">{{items.currency}}</label>
-                  <br>
-                  <label class="text-center">Prepration Time: </label>
-                  <label class="text-center">{{items.preparation_time}} min</label>
-                </div> <!-- main -->
-              </div> <!-- content -->
               <div class="footer">
-                <span class="left">
-                  <a [routerLink]="['/UpdateItem',menu.name,items.name]">
-                    <button type="button" class="btn btn-warning waves-light" mdbRippleRadius>Edit</button>
-                  </a>
-                </span>
-              </div> <!-- footer-->
-            </div> <!-- card back -->
-          </div> <!-- card -->
-        </div> <!-- items -->
-      </div> <!-- row -->
-      <a [routerLink]="['/AddItem',menu.name]">
-        <button type="button" class="btn btn-primary waves-light" mdbRippleRadius>Add New {{menu.name}} Item</button>
-      </a>
-      <!-- add new item -->
-    </div> <!-- categories -->
-    <a [routerLink]="['/AddCatog']">
-      <button type="button" class="btn btn-secondary waves-light" mdbRippleRadius>Add New Category</button>
+                <i class="fa fa-mail-forward"></i>
+              </div>
+            </div>
+          </div>
+          <!--end of front panel-->
+          <div class="back">
+            <div class="header">
+              <h5 class="name">{{items.name}}</h5>
+            </div>
+            <!-- header-->
+            <div class="content">
+              <div class="main">
+                <label class="text-center">Price: </label>
+                <label class="text-center">{{items.price}}</label>
+                <br>
+                <label class="text-center">Currency type: </label>
+                <label class="text-center">{{items.currency}}</label>
+                <br>
+                <label class="text-center">Prepration Time: </label>
+                <label class="text-center">{{items.preparation_time}} min</label>
+              </div>
+              <!-- main -->
+            </div>
+            <!-- content -->
+            <div class="footer">
+              <span class="left">
+                <a [routerLink]="['/UpdateItem',menu.name,items.name]">
+                  <button type="button" class="btn btn-warning waves-light" mdbRippleRadius>Edit</button>
+
+                </a>
+                <button type="button" (click)="deleteItem(items.name)" class="btn btn-outline-danger btn-sm" mdbRippleRadius>Delete</button>
+              </span>
+            </div>
+            <!-- footer-->
+          </div>
+          <!-- card back -->
+        </div>
+        <!-- card -->
+      </div>
+      <!-- items -->
+    </div>
+    <!-- row -->
+    <a [routerLink]="['/AddItem',menu.name]">
+      <button type="button" class="btn btn-primary waves-light" mdbRippleRadius>Add New {{menu.name}} Item</button>
     </a>
+    <!-- add new item -->
+  </div>
+  <!-- categories -->
+  <a [routerLink]="['/AddCatog']">
+    <button type="button" class="btn btn-secondary waves-light" mdbRippleRadius>Add New Category</button>
+  </a>
 </div>

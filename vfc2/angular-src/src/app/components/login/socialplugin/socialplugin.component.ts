@@ -31,13 +31,11 @@ export class SocialpluginComponent implements OnInit {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
     
   }
- 
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
     this.authService.authState.subscribe((user) => {
       this._cookieService.set('LoginStatus', 'Logedin');
       this.user = user;
-      //this.user.id = '100001785740305';
       var email = this.user.firstName;
       console.log('Email:'+ email);
       this.loggedIn = (user != null);
@@ -46,7 +44,6 @@ export class SocialpluginComponent implements OnInit {
 
     });
   }
- 
   signOut(): void {
     this.authService.signOut();
   }

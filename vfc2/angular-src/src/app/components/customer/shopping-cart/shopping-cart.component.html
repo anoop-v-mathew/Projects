@@ -1,42 +1,41 @@
-Shopping Cart
+<h1>Shopping Cart</h1>
 
 <div class="container" *ngFor='let orders of Orders'>
 
-  {{orders.vendorEmail}}
+    {{orders.vendorEmail}}
     <!--Table-->
-<table class="table">
+    <table class="table">
 
-    <!--Table head-->
-    <thead class="mdb-color darken-3">
-        <tr class="text-white">
-            <th>Food Item</th>
-            <th>Price:</th>
-            <th>Quantity</th>
-            <th>currency</th>
-            <th>Prepration Time</th>
-        </tr>
-    </thead>
-    <!--Table head-->
+        <!--Table head-->
+        <thead class="mdb-color darken-3">
+            <tr class="text-white">
+                <th>Food Item</th>
+                <th>Price:</th>
+                <th>Quantity</th>
+                <th>currency</th>
+                <th>Prepration Time</th>
+            </tr>
+        </thead>
+        <!--Table head-->
 
-    <!--Table body-->
-    <tbody>
-        <tr *ngFor='let order of orders.orderedItems'>
-            <td>{{order.itemName}}</td>
-            <td>{{order.itemPrice}}</td>
-            <td>{{order.quantity}}</td>
-            <td>{{order.currency}}</td>
-            <td>{{order.itemPrepTime}}</td>
-        </tr>
-    </tbody>
-    <!--Table body-->
-</table>
-<span>
+        <!--Table body-->
+        <tbody>
+            <tr *ngFor='let order of orders.orderedItems'>
+                <td>{{order.itemName}}</td>
+                <td>{{order.itemPrice}}</td>
+                <td>{{order.quantity}}</td>
+                <td>{{order.currency}}</td>
+                <td>{{order.itemPrepTime}}</td>
+            </tr>
+        </tbody>
+        <!--Table body-->
+    </table>
+    <span>
         <a [routerLink]="['Checkout/', orders.sku]">
-            <button type="button"  gradient="aqua" rounded="true" class="waves-light">GO to Cart</button>
-    </a>
-    
-</span>
+            <button type="button" gradient="aqua" rounded="true" class="waves-light">CheckOut</button>
+        </a>
 
-<!--Table-->
-  </div>
+    </span>
 
+    <!--Table-->
+</div>

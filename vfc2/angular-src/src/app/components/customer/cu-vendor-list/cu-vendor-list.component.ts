@@ -17,8 +17,6 @@ export class CuVendorListComponent implements OnInit {
     this._customer.getVendors()
     .subscribe(vendors => {
         this.Vendors = vendors;
-        //console.log('Vendors:' +JSON.stringify(this.vendors));
-      
       }
     );
   }

@@ -7,18 +7,13 @@ const mongoose = require('mongoose');
 const config = require('./config/database');
 const ejs = require('ejs');
 const paypal = require('paypal-rest-sdk');
-
-//for gridfs file upload
-
 const crypto = require('crypto');
 const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 const methodOverride = require('method-override');
 
-
 mongoose.connect(config.database);
-
 
 mongoose.connection.on('connected', () => {
     console.log('Connected to database: ' + config.database);
@@ -30,12 +25,10 @@ mongoose.connection.on('error', (err) => {
 });
 
 const app = express();
-
 const users = require('./routes/users');
 const admin = require('./routes/admin');
 const orders = require('./routes/order');
 const FileStorage = require('./routes/FileStorage');
-
 const port = 3000;
 
 app.use(cors());
@@ -64,28 +57,22 @@ app.use('/order', orders);
 //File Stroage routes
 app.use('/FileStorage', FileStorage);
 
-
-
 // Index Route
 app.get('/', (req, res) => {
-    res.send('<h1>VFC APIs</h1> <p>'+
-                '<b><u>admin - Vendors</u></b><p>' +
-                'GET /admin/getVendors<br>' +
-                'DELETE /admin/deleteVendor<br>' +
-                'POST /admin/addVendor<br>' +
-                'GET /admin/getVendor/:id<br>' +
-                'PUT /admin/updateVendor/:id'
-            );
-
-    //res.render('index');
+    res.send('<h1>VFC APIs</h1> <p>' +
+        '<b><u>admin - Vendors</u></b><p>' +
+        'GET /admin/getVendors<br>' +
+        'DELETE /admin/deleteVendor<br>' +
+        'POST /admin/addVendor<br>' +
+        'GET /admin/getVendor/:id<br>' +
+        'PUT /admin/updateVendor/:id'
+    );
 });
-
 
 app.listen(port, () => {
     console.log('Server started on port: ', + port);
 });
 
-//Init gfs
 
 
 

@@ -18,15 +18,15 @@ export class ViewVendorComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-    this.email = params['email'];
-    console.log('email:' + this.email);
-  });
-   
-   this._AdminService.getVendor(this.email)
+      this.email = params['email'];
+      console.log('email:' + this.email);
+    });
+
+    this._AdminService.getVendor(this.email)
       .subscribe(vendor => {
-          this.Vendor = vendor;
-          console.log('Vendor: ' +JSON.stringify( vendor));
-        }
+        this.Vendor = vendor;
+        console.log('Vendor: ' + JSON.stringify(vendor));
+      }
       );
   }
 

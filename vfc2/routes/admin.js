@@ -115,9 +115,9 @@ router.get('/getVendor/:email', (req, res, next) => {
     });
 });
 
-router.delete('/DeleteVendor/:email', (req, res, next) => {
-console.log("In /admin/DeleteVendor");
-var email = req.param.email;
+router.post('/DeleteVendor', (req, res, next) => {
+console.log("In /admin/DeleteVendor" + req.body.email);
+var email = req.body.VendorEmail;
 Vendor.DeleteVendor(email,(err, vendor) => {
 
     if (err) {
@@ -128,7 +128,7 @@ Vendor.DeleteVendor(email,(err, vendor) => {
                 res.json({success: false, msg: 'Failed to Delete User. Error: ' + err});
               }
               else{
-                res.json({success: true, msg: 'Deleted Succefully: '});
+                res.json({success: true, msg: 'Deleted Succefully: '+ email});
               }
           })
 
@@ -230,6 +230,20 @@ router.put('/UpdateItem/:email',(req, res, next) =>{
     })
 
 } )
+
+router.put('/DeleteItem/:name', (req, res, next)=>{
+    console.log("In Delete Item" + " " + req.param.name);
+    var name = req.param.name;
+
+    Vendor.DeleteItem(name, (err, vendor)=>{
+        if(err){
+            res.json({success: false, msg: 'Failed to delete Item. Error: ' + err});
+        }
+        else{
+            res.json({success: true, msg: 'Delete Item Succefully: '});
+        }
+    })
+})
 
 router.put('/Updatecharge/:email',(req, res, next) =>{
     console.log("In /Menu/Addcharges");

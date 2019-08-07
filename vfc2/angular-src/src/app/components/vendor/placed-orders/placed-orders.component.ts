@@ -38,35 +38,17 @@ export class PlacedOrdersComponent implements OnInit {
       
     });
 
-    //this.CustomerEmail = this._cookieService.get("username");
-    
     this._CustomerService.getOrderWithStatus(this.CustomerEmail,  'Accepted')
     .subscribe(order => {
       this.AcceptedOrders = order;
-      //console.log('Oders:' +JSON.stringify(this.SubmittedOrders));
-      
-    });
-
-    
-
-    
+    });  
     this._CustomerService.getOrderWithStatus(this.CustomerEmail, 'Preparing')
     .subscribe(order => {
       this.PreparingOrders = order;
-      //console.log('Oders:' +JSON.stringify(this.SubmittedOrders));
-      
     });
-
-    
-    
     this._CustomerService.getOrderWithStatus(this.CustomerEmail, 'Ready')
     .subscribe(order => {
       this.ReadyOrders = order;
-      //console.log('Oders:' +JSON.stringify(this.SubmittedOrders));
-      
     });
-
   }
-
-
 }

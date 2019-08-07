@@ -8,9 +8,9 @@ describe('CuVendorListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CuVendorListComponent ]
+      declarations: [CuVendorListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

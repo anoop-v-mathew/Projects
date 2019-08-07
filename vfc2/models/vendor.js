@@ -222,6 +222,12 @@ module.exports.getVendorByEmail = function(email, callback) {
 
 }
 
+module.exports.DeleteItem = function(Name, callback){
+  //const query={"name" : name};
+  //Vendor.categories.items.name(Name).remove();
+  Vendor.categories.items.name(Name).remove();
+}
+
 module.exports.getMenuByEmail = function(email, callback) {
 
   const query = {"VendorEmail": email};

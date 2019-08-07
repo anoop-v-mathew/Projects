@@ -8,9 +8,9 @@ describe('AddVendorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddVendorComponent ]
+      declarations: [AddVendorComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

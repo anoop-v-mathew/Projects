@@ -1,61 +1,50 @@
 <h1>
   order-history works!
 </h1>
-  
-
 <div class="container" *ngFor='let orders of Orders'>
-
   {{orders.vendorName}}
-    <!--Table-->
-<table class="table">
-
+  <!--Table-->
+  <table class="table">
     <!--Table head-->
     <thead class="mdb-color darken-3">
-        <tr class="text-white">
-            <th>Food Item</th>
-            <th>Price:</th>
-            <th>Quantity</th>
-            <th>currency</th>
-            <th>Prepration Time</th>
-        </tr>
+      <tr class="text-white">
+        <th>Food Item</th>
+        <th>Price:</th>
+        <th>Quantity</th>
+        <th>currency</th>
+        <th>Prepration Time</th>
+      </tr>
     </thead>
     <!--Table head-->
 
     <!--Table body-->
     <tbody>
-        <tr *ngFor='let order of orders.orderedItems'>
-            <td>{{order.itemName}}</td>
-            <td>{{order.itemPrice}}</td>
-            <td>{{order.quantity}}</td>
-            <td>{{order.currency}}</td>
-            <td>{{order.itemPrepTime}}</td>
-        </tr>
+      <tr *ngFor='let order of orders.orderedItems'>
+        <td>{{order.itemName}}</td>
+        <td>{{order.itemPrice}}</td>
+        <td>{{order.quantity}}</td>
+        <td>{{order.currency}}</td>
+        <td>{{order.itemPrepTime}}</td>
+      </tr>
     </tbody>
     <!--Table body-->
-</table>
-
-<div class="container">
-  <div class="row">
-
-    <div class="col">
-      <p *ngIf = "orders.orderStatus == 'Open'">
+  </table>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <p *ngIf="orders.orderStatus == 'Open'">
           <a [routerLink]="['Checkout/', orders.sku]">
-            <button type="button"  gradient="aqua" rounded="true" class="waves-light">GO to Cart</button>
-    </a>
-      </p>
-      
+            <button type="button" gradient="aqua" rounded="true" class="waves-light">GO to Cart</button>
+          </a>
+        </p>
+      </div>
+      <div class="col">
+        Total:
+      </div>
+      <div class="col">
+        Status: {{orders.orderStatus}}
+      </div>
     </div>
-
-    <div class="col">
-      Total:
-    </div>
-
-    <div class="col">
-      Status: {{orders.orderStatus}}
-    </div>
-
   </div>
+  <!--Table-->
 </div>
-<!--Table-->
-  </div>
-

@@ -8,9 +8,9 @@ describe('DelChargesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DelChargesComponent ]
+      declarations: [DelChargesComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

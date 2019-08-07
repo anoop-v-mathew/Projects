@@ -1,76 +1,77 @@
 <div *ngIf="Vendor && Vendor.VendorName.length > 0" class="container">
-  <h1> Edit Vendor </h1>
-  <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
-    <table>
-      <tr>
-        <td>
-            <label for="VendorName">Name</label>
-        </td>
-        <td>
-            <input type="text" class="form-control" id="VendorName" name="VendorName" [(ngModel)]="Vendor.VendorName" #VendorNameRef="ngModel">
-        </td>
-      </tr>
-      <tr>
-        <td>
-            <label for="VendorPhone">Phone Number</label>
-        </td>
-        <td>
-            <input type="text" class="form-control" id="VendorPhone" name="VendorPhone" [(ngModel)]="Vendor.VendorPhone" #VendorPhoneRef="ngModel">
-        </td>
-      </tr>
-      <tr>
-        <td>
-            <label for="campus">Location : Campus</label>
-        </td>
-        <td>
-            <input type="text" class="form-control" id="campus" name="campus" [(ngModel)]="Vendor.VendorLocation.campus" #campusRef="ngModel">
-        </td>
-      </tr>
-      <tr>
-        <td>
-            <label for="tower">Location : Tower</label>
-        </td>
-        <td>
-            <input type="text" class="form-control" id="tower" name="tower" [(ngModel)]="Vendor.VendorLocation.tower" #towerRef="ngModel">
-        </td>
-      </tr>
-      <tr>
-        <td>
-            <label for="floor">Location : Floor</label>
-        </td>
-        <td>
-            <input type="text" class="form-control" id="floor" name="floor" [(ngModel)]="Vendor.VendorLocation.floor" #floorRef="ngModel">
-        </td>
-      </tr>
-      <tr>
-        <td>
-            <label for="VendorOwner">Owner</label>
-        </td>
-        <td>
-            <input type="text" class="form-control" id="VendorOwner" name="VendorOwner" [(ngModel)]="Vendor.VendorOwner" #VendorOwnerRef="ngModel">
-        </td>
-      </tr>
-      <tr>
-        <td>
-            <label for="VendorEmail">Email</label>
-        </td>
-        <td>
-            <input type="text" class="form-control" id="VendorEmail" name="VendorEmail" [(ngModel)]="Vendor.VendorEmail" #VendorEmailRef="ngModel">
-        </td>
-      </tr>
-      <tr>
-        <td>
-            <label for="VendorPassword">Password</label>
-        </td>
-        <td>
-            <input type="password" class="form-control" id="VendorPassword" name="VendorPassword" [(ngModel)]="Vendor.VendorPassword" #VendorPasswordRef="ngModel">
-        </td>
-      </tr>
-      <tr>                            
-        <td>
-            <button type="submit" class="button">Submit</button>
-        </td>
-      </tr>
-    </table>
-  </form>
+    <h1> Edit Vendor </h1>
+    <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
+        <table>
+            <tr>
+                <td>
+                    <label for="VendorName">Name</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="VendorName" name="VendorName" [(ngModel)]="Vendor.VendorName" #VendorNameRef="ngModel">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="VendorPhone">Phone Number</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="VendorPhone" name="VendorPhone" [(ngModel)]="Vendor.VendorPhone" #VendorPhoneRef="ngModel">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="campus">Location : Campus</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="campus" name="campus" [(ngModel)]="Vendor.VendorLocation.campus" #campusRef="ngModel">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="tower">Location : Tower</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="tower" name="tower" [(ngModel)]="Vendor.VendorLocation.tower" #towerRef="ngModel">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="floor">Location : Floor</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="floor" name="floor" [(ngModel)]="Vendor.VendorLocation.floor" #floorRef="ngModel">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="VendorOwner">Owner</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="VendorOwner" name="VendorOwner" [(ngModel)]="Vendor.VendorOwner" #VendorOwnerRef="ngModel">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="VendorEmail">Email</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="VendorEmail" name="VendorEmail" [(ngModel)]="Vendor.VendorEmail" #VendorEmailRef="ngModel">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="VendorPassword">Password</label>
+                </td>
+                <td>
+                    <input type="password" class="form-control" id="VendorPassword" name="VendorPassword" [(ngModel)]="Vendor.VendorPassword"
+                        #VendorPasswordRef="ngModel">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit" class="button">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
 </div>
