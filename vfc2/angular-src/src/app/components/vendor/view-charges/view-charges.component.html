@@ -1,5 +1,4 @@
-
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
 <link href="http://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -12,7 +11,7 @@
       <br>
       <small></small>
     </h1>
-    <div class="col-sm-10 col-sm-offset-1" >
+    <div class="col-sm-10 col-sm-offset-1">
       <h2 class="section-heading h2 pt-4"></h2>
       <div class="col-md-4 col-sm-6">
         <div class="card-container" *ngFor='let charge of Vendor.charges'>
@@ -22,7 +21,8 @@
                 <img src="http://www.rwnewyork.com/images/2017/05/11/resorts-world-food-court.jpg" />
               </div>
               <div class="user">
-                <img class="img-circle" src="https://scm-assets.constant.co/swm/9a888e72fca371869e751ab34491d024/35b8f5e5-f755-40a4-a90b-722d9a9ccfbb.jpg" />
+                <img class="img-circle" src="https://scm-assets.constant.co/swm/9a888e72fca371869e751ab34491d024/35b8f5e5-f755-40a4-a90b-722d9a9ccfbb.jpg"
+                />
               </div>
               <div class="content">
                 <div class="main">
@@ -67,10 +67,10 @@
                 </div> -->
 
                 <span class="left">
-                    <a [routerLink]="['/Updatecharge',charge.name]">
-                      <button type="button" class="btn btn-warning waves-light" mdbRippleRadius>Edit</button>
-                    </a>
-                  </span>
+                  <a [routerLink]="['/Updatecharge',charge.name]">
+                    <button type="button" class="btn btn-warning waves-light" mdbRippleRadius>Edit</button>
+                  </a>
+                </span>
               </div>
             </div>
           </div>

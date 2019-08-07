@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import{CustomerService} from '../../../services/customer.service';
+import { CustomerService } from '../../../services/customer.service';
 
 @Component({
   selector: 'app-payment',
@@ -23,9 +23,9 @@ export class PaymentComponent implements OnInit {
     });
   }
 
-  UpdateStatus(){
+  UpdateStatus() {
     this.payment = true;
-    if (this.payment == true){
+    if (this.payment == true) {
       this._CustomerService.updateStatToSubmit(this.sku).subscribe(data => {
         if (data.success) {
           console.log(data.msg);
@@ -34,11 +34,10 @@ export class PaymentComponent implements OnInit {
           console.log(data.msg);
         }
       });
-      //this._AdminService.updateVendor(this.Vendor);
       this.router.navigate(['']);
     }
-    
-    else{
+
+    else {
 
     }
   }

@@ -30,12 +30,17 @@ export class ViewVendorsComponent implements OnInit {
       );
     }
 
-    deletebook(email){
-      console.log("the DeleteMethod hits");
-      this._AdminService.DeleteVendor(email)
+    public deletebook(email){
+      
+      const emaildetail = {
+        VendorEmail: email,
+      }
+      console.log("the DeleteMethod hits"+ ' ' +emaildetail );
+      this._AdminService.DeleteVendor(emaildetail)
       .subscribe(data => {
         if (data.success) {
           console.log(data.msg);
+          this.router.navigate(['admin']);
         }
         else {
           console.log(data.msg);

@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import{CustomerService} from '../../../services/customer.service';
+import { CustomerService } from '../../../services/customer.service';
 
 
-import {CookieService} from 'ngx-cookie-service';
+import { CookieService } from 'ngx-cookie-service';
 import { forEach } from '@angular/router/src/utils/collection';
 //import { ActivatedRoute, Params } from "@angular/router";
 import { Location, DatePipe } from "@angular/common";
 import { Router, ActivatedRoute, Params } from '@angular/router';
-
-//var randomize = require("randomatic");
 
 @Component({
   selector: 'app-customer-menu',
@@ -26,10 +24,10 @@ export class CustomerMenuComponent implements OnInit {
   OrderedItems: any[] = [];
 
   CustomerEmail: any;
-  constructor(private _CustomerService: CustomerService,private _cookieService:CookieService,
+  constructor(private _CustomerService: CustomerService, private _cookieService: CookieService,
     private route: ActivatedRoute,
     private router: Router) { }
-    
+
   ngOnInit() {
 
     this.route.params.subscribe(params => {
@@ -40,18 +38,16 @@ export class CustomerMenuComponent implements OnInit {
     this.CustomerEmail = this._cookieService.get("username");
 
     this._CustomerService.getVendor(this.Email)
-    .subscribe(vendor => {
-      this.Vendor = vendor;
-      console.log('Vendor:' +JSON.stringify(this.Vendor));
-    });
-
-    //console.log('VendorName:' + this.Vendor.VendorName)
+      .subscribe(vendor => {
+        this.Vendor = vendor;
+        console.log('Vendor:' + JSON.stringify(this.Vendor));
+      });
   }
 
-  AddtoOrder(menuname,itemsname , price, currency, preparation_time, quantity){
-    console.log(' '+ 'MenuName' + menuname + ' '+ 'ItemsName:'+ itemsname + ' '+ Date.now());
+  AddtoOrder(menuname, itemsname, price, currency, preparation_time, quantity) {
+    console.log(' ' + 'MenuName' + menuname + ' ' + 'ItemsName:' + itemsname + ' ' + Date.now());
 
-    
+
     const order = {
       itemName: itemsname,
       itemPrice: price,
@@ -59,35 +55,27 @@ export class CustomerMenuComponent implements OnInit {
       currency: currency,
       itemPrepTime: preparation_time
     };
-
-
     this.OrderedItems.push(order);
-
-    console.log('OderedItem'+ JSON.stringify(this.OrderedItems));
-    
-
+    console.log('OderedItem' + JSON.stringify(this.OrderedItems));
   }
-
-  AddtoCart(VendorName){
+  AddtoCart(VendorName) {
     const Finalorder = {
       customerEmail: this.CustomerEmail,
       orderForVendor: this.Email,
       vendorName: VendorName,
-  //orderPlacedAt: Date(),
-  orderStatus: 'Open',
-  OrderedList: this.OrderedItems
+      //orderPlacedAt: Date(),
+      orderStatus: 'Open',
+      OrderedList: this.OrderedItems
     };
-
     this._CustomerService.AddOrder(Finalorder)
-    .subscribe(data =>{
-      if (data.success) {
-            console.log(data.msg);
-            this.router.navigate(['sCart']);
-          }
-          else {
-            console.log(data.msg);
-          }
-    });
+      .subscribe(data => {
+        if (data.success) {
+          console.log(data.msg);
+          this.router.navigate(['sCart']);
+        }
+        else {
+          console.log(data.msg);
+        }
+      });
   }
-
 }

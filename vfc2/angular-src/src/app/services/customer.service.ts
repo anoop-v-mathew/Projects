@@ -10,17 +10,17 @@ export class CustomerService {
   private _adminAPI = 'http://localhost:3000/admin';
   constructor(private _http: Http) { }
 
-  ValidateRegister(user){
-    if(user.userDisplayName == undefined || user.email == undefined|| user.password == undefined){
+  ValidateRegister(user) {
+    if (user.userDisplayName == undefined || user.email == undefined || user.password == undefined) {
       return false;
-      
+
     }
-    else{
+    else {
       return true;
     }
   }
 
-  ValidateEmail(email){
+  ValidateEmail(email) {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   }
@@ -29,53 +29,53 @@ export class CustomerService {
     let headers = new Headers();
     //headers.append('Content-Type', 'application/json');
     return this._http.get(this._adminAPI + '/getVendors')
-    .map(res => res.json());
+      .map(res => res.json());
   }
 
   getVendor(email): any {
     let headers = new Headers();
     //headers.append('Content-Type', 'application/json');
     return this._http.get('http://localhost:3000/admin/getVendor/' + email)
-    .map(res => res.json());
+      .map(res => res.json());
   }
 
-  AddOrder(order){
+  AddOrder(order) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    console.log('Order:' +JSON.stringify(order));
-    return this._http.post('http://localhost:3000/order/addOrder', order,{headers: headers})
-    .map(res => res.json());
+    console.log('Order:' + JSON.stringify(order));
+    return this._http.post('http://localhost:3000/order/addOrder', order, { headers: headers })
+      .map(res => res.json());
   }
 
-  getOrder(email): any{
+  getOrder(email): any {
     let headers = new Headers();
     return this._http.get('http://localhost:3000/order/getOrders/' + email)
-    .map(res => res.json());
+      .map(res => res.json());
   }
 
-  getOpenOrder(email): any{
+  getOpenOrder(email): any {
     let headers = new Headers();
     return this._http.get('http://localhost:3000/order/getOpenOrders/' + email)
-    .map(res => res.json());
+      .map(res => res.json());
   }
 
-  getOrderWithStatus(email, status): any{
+  getOrderWithStatus(email, status): any {
     let headers = new Headers();
-    return this._http.get('http://localhost:3000/order/getOpenOrders/' + email + '/'+ status)
-    .map(res => res.json());
+    return this._http.get('http://localhost:3000/order/getOpenOrders/' + email + '/' + status)
+      .map(res => res.json());
   }
 
-  getCheckoutOrder(sku): any{
+  getCheckoutOrder(sku): any {
     let headers = new Headers();
     return this._http.get('http://localhost:3000/order/getCheckoutOrders/' + sku)
-    .map(res => res.json());
+      .map(res => res.json());
   }
 
-  updateStatToSubmit(sku){
+  updateStatToSubmit(sku) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http.post('http://localhost:3000/order/submitOrder/'+ sku,{headers: headers})
-    .map(res => res.json());
+    return this._http.post('http://localhost:3000/order/submitOrder/' + sku, { headers: headers })
+      .map(res => res.json());
   }
 }
 

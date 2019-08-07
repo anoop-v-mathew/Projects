@@ -8,7 +8,6 @@ describe('AdminService', () => {
       providers: [AdminService]
     });
   });
-
   it('should be created', inject([AdminService], (service: AdminService) => {
     expect(service).toBeTruthy();
   }));

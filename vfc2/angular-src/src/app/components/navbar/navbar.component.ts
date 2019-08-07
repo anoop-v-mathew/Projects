@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
-import {CookieService} from 'ngx-cookie-service';
+import { CookieService } from 'ngx-cookie-service';
 import { logging } from 'selenium-webdriver';
 
 import { AuthService } from "angular4-social-login";
@@ -18,28 +18,23 @@ export class NavbarComponent implements OnInit {
   loginStatus = false;
   constructor(
     private _flashMessagesService: FlashMessagesService,
-    private _AuthService: AuthService, 
+    private _AuthService: AuthService,
     private router: Router,
-    private _cookieService:CookieService 
+    private _cookieService: CookieService
   ) { }
 
   ngOnInit() {
     var Username = this._cookieService.get('username');
 
     var Loggedin = this._cookieService.get('LoginStatus');
-
-    ///this.loginStatus = true;
-    if(Loggedin == 'Logedin'){
+    if (Loggedin == 'Logedin') {
 
       this.loginStatus = true;
       console.log('LoginStatus:' + this.loginStatus);
     }
-
-    
-
   }
 
-  Sighout(){
+  Sighout() {
     console.log('loggingout');
     this._cookieService.deleteAll();
     this.loginStatus = false;

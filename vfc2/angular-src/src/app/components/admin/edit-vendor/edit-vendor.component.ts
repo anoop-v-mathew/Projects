@@ -20,13 +20,13 @@ export class EditVendorComponent implements OnInit {
     });
     console.log(this.email);
 
-    
-    
+
+
     this._AdminService.getVendor(this.email)
       .subscribe(vendor => {
-          this.Vendor = vendor;
-          //console.log('Vendor: ' +JSON.stringify( vendor));
-        }
+        this.Vendor = vendor;
+        //console.log('Vendor: ' +JSON.stringify( vendor));
+      }
       );
   }
 

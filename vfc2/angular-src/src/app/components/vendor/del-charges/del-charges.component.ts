@@ -11,5 +11,4 @@ export class DelChargesComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

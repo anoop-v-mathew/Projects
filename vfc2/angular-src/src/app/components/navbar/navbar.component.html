@@ -1,56 +1,62 @@
-
 <!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark teal" [containerInside]="true" *ngIf = "loginStatus">
-           
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark teal" [containerInside]="true" *ngIf="loginStatus">
+
   <!-- Navbar brand -->
-  <logo><a class="navbar-brand" href="#">Virtual Food Court</a></logo>
+  <logo>
+    <a class="navbar-brand" href="#">Digital Food Court</a>
+  </logo>
 
   <!-- Collapsible content -->
-    <!-- Collapsible content -->
-  <links >
+  <!-- Collapsible content -->
+  <links>
 
     <!-- Links -->
-    <ul class="navbar-nav mr-auto" >
+    <ul class="navbar-nav mr-auto">
       <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-          <a class="nav-link waves-light" mdbRippleRadius routerLink="About">About<span class="sr-only">(current)</span></a>
+        <a class="nav-link waves-light" mdbRippleRadius routerLink="About">About
+          <span class="sr-only">(current)</span>
+        </a>
       </li>
     </ul>
-    <ul class="navbar-nav ml-auto" >
+    <ul class="navbar-nav ml-auto">
       <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-          <a class="nav-link waves-light" mdbRippleRadius routerLink="Login" (click)="Sighout()">Logout</a>
+        <a class="nav-link waves-light" mdbRippleRadius routerLink="Login" (click)="Sighout()">Logout</a>
       </li>
-  </ul>
+    </ul>
     <!-- Links -->
 
-</links>
+  </links>
 </mdb-navbar>
 <!--/.Navbar-->
 
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark teal" [containerInside]="true" *ngIf = "!loginStatus">
-           
-    <!-- Navbar brand -->
-    <logo><a class="navbar-brand" href="#">Virtual Food Court</a></logo>
-  
-    <!-- Collapsible content -->
-      <!-- Collapsible content -->
-    <links >
-  
-      <!-- Links -->
-      <ul class="navbar-nav mr-auto" >
-        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-            <a class="nav-link waves-light" mdbRippleRadius routerLink="About">About<span class="sr-only">(current)</span></a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto" >
-        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-            <a class="nav-link waves-light" mdbRippleRadius routerLink="Login">Login</a>
-        </li>
-        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-          <a class="nav-link waves-light" mdbRippleRadius routerLink="Register">Register</a>
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark teal" [containerInside]="true" *ngIf="!loginStatus">
+
+  <!-- Navbar brand -->
+  <logo>
+    <a class="navbar-brand" href="#">Digital Food Court</a>
+  </logo>
+
+  <!-- Collapsible content -->
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link waves-light" mdbRippleRadius routerLink="About">About
+          <span class="sr-only">(current)</span>
+        </a>
       </li>
     </ul>
-      <!-- Links -->
-  
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link waves-light" mdbRippleRadius routerLink="Login">Login</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link waves-light" mdbRippleRadius routerLink="Register">Register</a>
+      </li>
+    </ul>
+    <!-- Links -->
+
   </links>
-  </mdb-navbar>
-  
+</mdb-navbar>

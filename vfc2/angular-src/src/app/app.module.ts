@@ -44,24 +44,23 @@ import { AboutComponent } from './components/about/about.component';
 import { AdminService } from './services/admin.service';
 import { VendorService } from './services/vendor.service';
 import { CustomerService } from './services/customer.service';
-import {AuthService} from './services/auth.service';
+import { AuthService } from './services/auth.service';
 
 import { CookieService } from 'ngx-cookie-service';
 import { SocialpluginComponent } from './components/login/socialplugin/socialplugin.component';
 import { ShoppingCartComponent } from './components/customer/shopping-cart/shopping-cart.component';
 import { PaymentComponent } from './components/customer/payment/payment.component';
 import { CheckOutComponent } from './components/customer/check-out/check-out.component';
-//import { CheckOutComponent } from './components/customer/check-out/check-out.component';
 
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 import { OrderHistoryComponent } from './components/customer/order-history/order-history.component';
 import { PlacedOrdersComponent } from './components/vendor/placed-orders/placed-orders.component';
 
 let config = new AuthServiceConfig([
-  // {
-  //   id: GoogleLoginProvider.PROVIDER_ID,
-  //   provider: new GoogleLoginProvider("Google-OAuth-Client-Id")
-  // },
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("Google-OAuth-Client-Id")
+  },
   {
     id: FacebookLoginProvider.PROVIDER_ID,
     provider: new FacebookLoginProvider("338882873311801")
@@ -76,27 +75,27 @@ export function provideConfig() {
 const appRoutes: Routes = [
   { path: 'About', component: AboutComponent },
   { path: 'Login', component: LoginComponent },
-  { path: 'SLogin', component:  SocialpluginComponent},
+  { path: 'SLogin', component: SocialpluginComponent },
   { path: 'Register', component: RegisterComponent },
-  { path: 'admin', component:ViewVendorsComponent },
-  { path: 'vendor/:email', component:ViewVendorComponent },
-  { path: 'vendor', component:VeiwMenuComponent },
-  { path: 'UpdateVendor/:email', component:EditVendorComponent },
-  { path: 'AddVendor', component:AddVendorComponent },
+  { path: 'admin', component: ViewVendorsComponent },
+  { path: 'vendor/:email', component: ViewVendorComponent },
+  { path: 'vendor', component: VeiwMenuComponent },
+  { path: 'UpdateVendor/:email', component: EditVendorComponent },
+  { path: 'AddVendor', component: AddVendorComponent },
   { path: 'Menu', component: VeiwMenuComponent },
   { path: 'charge', component: VeiwChargesComponent },
   { path: 'Updatecharge/:name', component: EditChargesComponent },
   { path: 'UpdateItem/:name/:name2', component: EditMenuComponent },
-  { path: 'AddItem/:name', component:AddItemComponent },
-  { path: 'AddCatog', component:AddMenuComponent },
+  { path: 'AddItem/:name', component: AddItemComponent },
+  { path: 'AddCatog', component: AddMenuComponent },
   { path: 'AddCharge', component: AddChargesComponent },
   { path: 'cumenu/:email', component: CustomerMenuComponent },
   { path: 'customer', component: CuVendorListComponent },
-  { path:'sCart', component:ShoppingCartComponent},
-  { path:'sCart/Checkout/:sku', component:CheckOutComponent},
-  { path:'Pay/:sku', component:PaymentComponent},
-  { path:'Ohistory', component:OrderHistoryComponent},
-  { path:'PlaceOrder', component:PlacedOrdersComponent}
+  { path: 'sCart', component: ShoppingCartComponent },
+  { path: 'sCart/Checkout/:sku', component: CheckOutComponent },
+  { path: 'Pay/:sku', component: PaymentComponent },
+  { path: 'Ohistory', component: OrderHistoryComponent },
+  { path: 'PlaceOrder', component: PlacedOrdersComponent }
 
 ];
 
@@ -135,7 +134,7 @@ export const routing = RouterModule.forRoot(appRoutes);
     FileSelectDirective,
     OrderHistoryComponent,
     PlacedOrdersComponent
-    
+
   ],
   imports: [
     BrowserModule,
@@ -144,26 +143,16 @@ export const routing = RouterModule.forRoot(appRoutes);
     FormsModule,
     MDBBootstrapModule.forRoot(),
     FlashMessagesModule.forRoot(),
-    SocialLoginModule.initialize(config)
-    
+    SocialLoginModule.initialize(config),
+    // BsDropdownModule.forRoot(),
+    // TooltipModule.forRoot(),
+    // ModalModule.forRoot()
+
   ],
   providers: [
     AdminService, VendorService, AuthService, CookieService
   ],
-  bootstrap: [ AppComponent ],
-  schemas: [ NO_ERRORS_SCHEMA ]
+  bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule { }
-
-// import { AboutComponent } from './components/about/about.component';
-// import { DeleteVenodrComponent } from './components/admin/delete-venodr/delete-venodr.component';
-// import { CookieService } from 'ngx-cookie-service';
-
-
-
-
-
-
-
-
-

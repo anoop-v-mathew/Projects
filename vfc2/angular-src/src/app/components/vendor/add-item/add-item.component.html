@@ -1,53 +1,53 @@
 <div class="container">
     <h1> Add Item For {{name}} Category</h1>
     <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
-      <table>
-        <tr>
-          <td>
-              <label for="name">Name</label>
-          </td>
-          <td>
-              <input type="text" class="form-control" id="Name" name="Name" [(ngModel)]="Name" #NameRef="ngModel">
-          </td>
-        </tr>
-        <tr>
-          <td>
-              <label for="price">price</label>
-          </td>
-          <td>
-              <input type="text" class="form-control" id="price" name="price" [(ngModel)]="price" #priceRef="ngModel">
-          </td>
-        </tr>
-        <tr>
-          <td>
-              <label for="currency">currency</label>
-          </td>
-          <td>
-              <input type="text" class="form-control" id="currency" name="currency" [(ngModel)]="currency" #currencyRef="ngModel">
-          </td>
-        </tr>
-        <tr>
-          <td>
-              <label for="preparation_time">preparation_time</label>
-          </td>
-          <td>
-              <input type="text" class="form-control" id="preparationtime" name="preparationtime" [(ngModel)]="preparation_time" #preparationtimeRef="ngModel">
-          </td>
-        </tr>
-        <tr>
+        <table>
+            <tr>
+                <td>
+                    <label for="name">Name</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="Name" name="Name" [(ngModel)]="Name" #NameRef="ngModel">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="price">price</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="price" name="price" [(ngModel)]="price" #priceRef="ngModel">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="currency">currency</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="currency" name="currency" [(ngModel)]="currency" #currencyRef="ngModel">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="preparation_time">preparation_time</label>
+                </td>
+                <td>
+                    <input type="text" class="form-control" id="preparationtime" name="preparationtime" [(ngModel)]="preparation_time" #preparationtimeRef="ngModel">
+                </td>
+            </tr>
+            <tr>
                 <td>
                     <label>Upload Item image</label>
                 </td>
-                <td >
-                    <input type="file" name="file" id="file" class="form-control" [(ngModel)]= "file" #fileRef="ngModel">
+                <td>
+                    <input type="file" name="file" id="file" class="form-control" [(ngModel)]="file" #fileRef="ngModel">
                 </td>
-              </tr>
-        <tr>                            
-          <td>
-              <button type="submit" class="btn btn-primary">Submit</button>
-          </td>
-        </tr>
-      </table>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </td>
+            </tr>
+        </table>
     </form>
 
-  </div>
+</div>

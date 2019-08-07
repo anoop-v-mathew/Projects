@@ -1,7 +1,7 @@
 {
-  "name": "vfc2",
+  "name": "dfc2",
   "version": "1.0.0",
-  "description": "Virtual Food Court",
+  "description": "Digital Food Court",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,6 +22,6 @@
     "paypal-rest-sdk": "^1.8.1",
     "randomstring": "^1.1.5"
   },
-  "author": "Anoop & Bhargavi",
+  "author": "Bhargavi",
   "license": "ISC"
 }

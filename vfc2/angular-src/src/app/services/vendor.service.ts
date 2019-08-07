@@ -14,13 +14,13 @@ export class VendorService {
     let headers = new Headers();
     //headers.append('Content-Type', 'application/json');
     return this._http.get('http://localhost:3000/admin/getVendor/' + email)
-    .map(res => res.json());
+      .map(res => res.json());
   }
 
-  addcategories(email, Menu){
+  addcategories(email, Menu) {
     let headers = new Headers();
-    return this._http.put('http://localhost:3000/admin/Addcategories/' + email, Menu, {headers: headers})
-    .map(res => res.json());
+    return this._http.put('http://localhost:3000/admin/Addcategories/' + email, Menu, { headers: headers })
+      .map(res => res.json());
   }
 
   addMenuItem(email, category) {
@@ -31,25 +31,32 @@ export class VendorService {
     ).map(res => res.json());
   }
 
-  addCharge(email, Menu){
+  addCharge(email, Menu) {
     let headers = new Headers();
-    return this._http.put('http://localhost:3000/admin/Addcharge/' + email, Menu, {headers: headers})
-    .map(res => res.json());
+    return this._http.put('http://localhost:3000/admin/Addcharge/' + email, Menu, { headers: headers })
+      .map(res => res.json());
   }
 
-  UpdateMenuItem(email, Menu){
+  UpdateMenuItem(email, Menu) {
     let headers = new Headers();
     console.log('inside service')
-    return this._http.put('http://localhost:3000/admin/UpdateItem/' + email, Menu, {headers: headers})
-    .map(res => res.json());
+    return this._http.put('http://localhost:3000/admin/UpdateItem/' + email, Menu, { headers: headers })
+      .map(res => res.json());
   }
 
-  UpdateCharge(email, Menu){
+  DeleteMenuItem(name) {
+    console.log("Hit the service");
+    let headers = new Headers();
+    return this._http.put('http://localhost:3000/admin/DeleteItem/' + name, { headers: headers })
+      .map(res => res.json());
+  }
+
+  UpdateCharge(email, Menu) {
 
     console.log("inside UpdateCharge")
     let headers = new Headers();
-    return this._http.put('http://localhost:3000/admin/Updatecharge/' + email, Menu, {headers: headers})
-    .map(res => res.json());
+    return this._http.put('http://localhost:3000/admin/Updatecharge/' + email, Menu, { headers: headers })
+      .map(res => res.json());
   }
 
 }

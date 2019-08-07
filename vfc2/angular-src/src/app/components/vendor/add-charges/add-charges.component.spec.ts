@@ -8,9 +8,9 @@ describe('AddChargesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddChargesComponent ]
+      declarations: [AddChargesComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
